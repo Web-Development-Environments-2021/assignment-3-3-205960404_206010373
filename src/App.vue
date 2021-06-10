@@ -7,11 +7,13 @@
 
         <b-nav-item :to="{ name: 'search' }">Search</b-nav-item>
         </b-navbar-nav>
-        <b-navbar-nav class="ml-auto" v-if="!$root.store.username">
+        <!-- <b-navbar-nav class="ml-auto" v-if="!$root.store.username"> -->
+           <b-navbar-nav>
           <b-nav-item :to="{ name: 'login' }">Login</b-nav-item>
           <b-nav-item :to="{ name: 'register' }">Register</b-nav-item>
         </b-navbar-nav>
-        <b-navbar-nav class="ml-auto" v-else>
+        <!-- <b-navbar-nav class="ml-auto" v-else> -->
+        <b-navbar-nav>
         <b-nav-item-dropdown right>
           <template #button-content>
             User
