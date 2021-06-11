@@ -285,7 +285,7 @@ export default {
     async Register() {
       try {
         const response = await this.axios.post(
-          "https://test-for-3-2.herokuapp.com/user/Register",
+          "https://localhost:3000/user/Register",
           {
             username: this.form.username,
             password: this.form.password
@@ -315,7 +315,9 @@ export default {
         country: null,
         password: "",
         confirmedPassword: "",
-        email: ""
+        email: "",
+        urlImage: ""
+
       };
       this.$nextTick(() => {
         this.$v.$reset();
