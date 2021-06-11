@@ -25,7 +25,7 @@
         </b-form-invalid-feedback>
       </b-form-group>
 
-       <b-form-group
+        <b-form-group
         id="input-group-firstName"
         label-cols-sm="3"
         label="First Name:"
@@ -99,19 +99,13 @@
         </b-form-invalid-feedback>
         <b-form-text v-else-if="$v.form.password.$error" text-variant="info">
           Your password should be <strong>strong</strong>. <br />
-          For that, your password should be also: with a number and special character
+          For that, your password should be also:
         </b-form-text>
         <b-form-invalid-feedback
           v-if="$v.form.password.required && !$v.form.password.length"
         >
-        length of password has to be between 5-10 characters long
+          Have length between 5-10 characters long
         </b-form-invalid-feedback>
-        <b-form-invalid-feedback
-          v-if="$v.form.password.required && !$v.form.password.valid"
-        >
-        password must contain a Special Character and a Number
-        </b-form-invalid-feedback>
-        
       </b-form-group>
 
       <b-form-group
@@ -157,19 +151,22 @@
       </b-form-group>
 
       <b-form-group
-        id="input-group-urlImage"
+        id="input-group-url"
         label-cols-sm="3"
-        label="url Image:"
-        label-for="urlImage"
+        label="Image Photo:"
+        label-for="url"
       >
         <b-form-input
-          id="urlImage"
-          type="password"
-          v-model="$v.form.urlImage.$model"
-          :state="validateState('urlImage')"
+          id="email"
+          v-model="$v.form.email.$model"
+          type="text"
+          :state="validateState('email')"
         ></b-form-input>
-        <b-form-invalid-feedback v-if="!$v.form.urlImage.required">
-          urlImage is required
+        <b-form-invalid-feedback v-if="!$v.form.email.required">
+          email is required
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-if="!$v.form.email.email">
+          email must be: example@domain.com
         </b-form-invalid-feedback>
       </b-form-group>
 
@@ -212,6 +209,7 @@ import {
   sameAs,
   email
 } from "vuelidate/lib/validators";
+
 export default {
   name: "Register",
   data() {
@@ -224,6 +222,7 @@ export default {
         password: "",
         confirmedPassword: "",
         email: "",
+        imageurl: "",
         submitError: undefined
       },
       countries: [{ value: null, text: "", disabled: true }],
@@ -251,24 +250,19 @@ export default {
       },
       password: {
         required,
-        length: (p) => minLength(5)(p) && maxLength(10)(p),
-        valid : function(value){
-          const containsNumber = /[0-9]/.test(value)
-          const containsSpecial = /[#?!@$%^&*-]/.test(value)
-          return containsNumber && containsSpecial
-        }
+        length: (p) => minLength(5)(p) && maxLength(10)(p)
       },
       confirmedPassword: {
         required,
         sameAsPassword: sameAs("password")
       },
-       email: {
+      email: {
         required,
         email
       },
-      urlImage: {
+      imageurl: {
         required,
-        alpha
+        url
       }
     }
   },
@@ -315,7 +309,8 @@ export default {
         country: null,
         password: "",
         confirmedPassword: "",
-        email: ""
+        email: "",
+        imageurl: ""
       };
       this.$nextTick(() => {
         this.$v.$reset();
