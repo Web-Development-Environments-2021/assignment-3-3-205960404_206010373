@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import LeagueInfo from "../components/LeagueInfo";
-import FavoriteGames from "../components/FavoriteGames";
+import LeagueInfo from "../components/League/LeagueInfo";
+import FavoriteGames from "../components/Matches/FavoriteGames";
 import LoginPage from "../pages/LoginPage";
 export default {
   components: {
