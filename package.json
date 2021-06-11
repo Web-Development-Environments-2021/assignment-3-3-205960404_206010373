@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "build": "vue-cli-service build src/main.js",
+    "start": "npm run serve_project",
     "serve_project": "vue-cli-service serve src/main.js",
     "build_project": "vue-cli-service build src/main.js"
   },

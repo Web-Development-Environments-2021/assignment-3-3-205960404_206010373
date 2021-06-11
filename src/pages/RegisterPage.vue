@@ -164,7 +164,6 @@
       >
         <b-form-input
           id="urlImage"
-          type="password"
           v-model="$v.form.urlImage.$model"
           :state="validateState('urlImage')"
         ></b-form-input>
@@ -224,7 +223,8 @@ export default {
         password: "",
         confirmedPassword: "",
         email: "",
-        submitError: undefined
+        urlImage: "",
+        //submitError: undefined
       },
       countries: [{ value: null, text: "", disabled: true }],
       errors: [],
@@ -268,7 +268,6 @@ export default {
       },
       urlImage: {
         required,
-        alpha
       }
     }
   },
@@ -285,10 +284,15 @@ export default {
     async Register() {
       try {
         const response = await this.axios.post(
-          "https://localhost:3000/user/Register",
+          "http://localhost:3000/Register",
           {
             username: this.form.username,
-            password: this.form.password
+            firstName: this.form.firstName,
+            lastName: this.form.lastName,
+            country: this.form.country,
+            password: this.form.password,
+            email: this.form.email,
+            urlImage: this.form.urlImage
           }
         );
         this.$router.push("/login");
@@ -304,7 +308,7 @@ export default {
       if (this.$v.form.$anyError) {
         return;
       }
-      // console.log("register method go");
+      console.log("register method go liiiad");
       this.Register();
     },
     onReset() {
