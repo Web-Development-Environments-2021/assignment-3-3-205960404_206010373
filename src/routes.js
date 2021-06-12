@@ -38,6 +38,16 @@ const routes = [
     component: () => import("./pages/MyPlayers")
   },
   {
+    path: "/currentstage",
+    name: "currentstage",
+    component: () => import("./pages/CurrentStage")
+  },
+  {
+    path: "/about",
+    name: "about",
+    component: () => import("./pages/About")
+  },
+  {
     path: "/myteams",
     name: "myteams",
     component: () => import("./pages/MyTeams")
