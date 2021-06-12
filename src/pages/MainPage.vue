@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" :style= image>
     <h1 class="title">Main Page</h1>
     <LoginPage v-if="!$root.store.username"></LoginPage>
     <FavoriteGames v-else></FavoriteGames>
@@ -15,8 +15,12 @@ export default {
   components: {
     LeagueInfo, 
     LoginPage, 
-    FavoriteGames
-  }
+    FavoriteGames},
+  data(){
+      return {
+        image: { backgroundImage: "url(https://github.com/Web-Development-Environments-2021/assignment-3-3-205960404_206010373/blob/main/sources/backfootball.jpg)" }
+      }
+    }
 };
 </script>
 
@@ -32,4 +36,5 @@ export default {
   pointer-events: none;
   cursor: default;
 }
+
 </style>
