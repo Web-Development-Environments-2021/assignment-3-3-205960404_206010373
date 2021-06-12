@@ -18,7 +18,11 @@ export default {
     FavoriteGames},
   data(){
       return {
-        image: { backgroundImage: "url(https://github.com/Web-Development-Environments-2021/assignment-3-3-205960404_206010373/blob/main/sources/backfootball.jpg)" }
+        image: {
+          backgroundImage:"url(https://c4.wallpaperflare.com/wallpaper/593/957/270/background-mesh-football-sport-wallpaper-preview.jpg)",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "100% auto"
+          }
       }
     }
 };
