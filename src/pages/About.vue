@@ -1,5 +1,5 @@
 <template>
-  <div style="background-image: url('sources\backfootball.jpg'); background-size: cover; height: 850px; width: 100%; padding-top: 85px;">
+  <div :style= image>
     <h4>Hi, we are Liad Segev and Dvir Rainisch <br>
       we are third year students in the Department of Information Systems. <br>
       This project was done as part of the course Web-Development-Environments <br>
@@ -12,7 +12,14 @@
 
 <script>
 export default {
-
+data(){
+      return {
+        image: {
+          backgroundImage:"url(https://c4.wallpaperflare.com/wallpaper/593/957/270/background-mesh-football-sport-wallpaper-preview.jpg)",
+          backgroundSize: "10% auto"
+          }
+      }
+    }
 }
 </script>
 
