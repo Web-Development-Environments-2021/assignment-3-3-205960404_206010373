@@ -30,13 +30,13 @@
         </b-nav-item-dropdown>
         </b-navbar-nav>
 
-        <b-navbar-nav v-if="$root.store.username">
+        <b-navbar-nav v-if="!$root.store.username">
         <b-nav-item-dropdown right >
           <template #button-content>
             User
           </template>
           <b-dropdown-item href="#">Favorites</b-dropdown-item>
-          <b-dropdown-item href="#" @click="logout()">Log Out</b-dropdown-item>
+          <b-dropdown-item href="#" >Log Out</b-dropdown-item>
         </b-nav-item-dropdown>
         </b-navbar-nav>
         <b-navbar-nav v-if="$root.store.username">
@@ -55,21 +55,13 @@
 export default {
   name: "App",
   methods: {
-    async logout() {
+    Logout() {
       this.$root.store.logout();
       this.$root.toast("Logout", "User logged out successfully", "success");
-      try{
-        console.log("logout");
-          const response = await axios.post(
-            "http://localhost:3000/logout"); 
-             console.log(response); 
-      }
-      catch (err){
-        console.log(response);
-      }
-      // this.$router.push("/").catch(() => {
-      //   this.$forceUpdate();
-      // });
+
+      this.$router.push("/").catch(() => {
+        this.$forceUpdate();
+      });
     }
   }
 };
