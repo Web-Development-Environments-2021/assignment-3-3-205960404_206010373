@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import GamePreview from "../Matches/GamePreview.vue";
+import GamePreview from "./GamePreview.vue";
 export default {
   name: "FavoriteGames",
   components: {
