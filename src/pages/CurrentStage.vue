@@ -35,15 +35,6 @@
 <script>
  export default {
     data() {
-      //  try{
-      //   console.log("logout");
-      //     const response = await axios.get(
-      //       "http://localhost:3000/matches/pastMatches"); 
-      //        console.log(response); 
-      // }
-      // catch (err){
-      //   console.log(response);
-      // }
       return {
         fields: ['first_name', 'last_name', 'show_details'],
         items: [
@@ -58,7 +49,30 @@
           { isActive: true, age: 38, first_name: 'Jami', last_name: 'Carney' }
         ]
       }
+    },
+    methods: {
+    async importPastMatches(){
+      console.log("importPastMaatches");
+      try {
+        const response = await this.axios.get(
+          "http://localhost:3000/matches/pastMatches",
+        );
+        // const games = response.data.games;
+        // this.games = [];
+        // this.games.push(...games);
+        console.log(response);
+      } catch (error) {
+        console.log("error in update games")
+        console.log(error);
+      }
     }
+  }, 
+  mounted(){
+    console.log("Past Games mounted");
+    this.importPastMatches(); 
+  }
+
+
   }
 </script>
 
