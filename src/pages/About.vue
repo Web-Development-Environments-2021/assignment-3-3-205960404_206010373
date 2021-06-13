@@ -1,5 +1,5 @@
 <template>
-  <div :style= image>
+  <div>
     <h4>Hi, we are Liad Segev and Dvir Rainisch <br>
       we are third year students in the Department of Information Systems. <br>
       This project was done as part of the course Web-Development-Environments <br>
@@ -12,17 +12,13 @@
 
 <script>
 export default {
-data(){
-      return {
-        image: {
-          backgroundImage:"url(https://c4.wallpaperflare.com/wallpaper/593/957/270/background-mesh-football-sport-wallpaper-preview.jpg)",
-          backgroundSize: "10% auto"
-          }
-      }
-    }
+
 }
 </script>
 
 <style>
+body {
+  background-image: url(C:\\Users\\User\\Desktop\\assignment-3-3-205960404_206010373\\sources\\ourpic.jpeg);
+}
 
 </style>
