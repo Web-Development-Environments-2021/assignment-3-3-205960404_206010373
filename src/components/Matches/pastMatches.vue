@@ -1,0 +1,63 @@
+<template>
+ <div>
+   <h1>Past Games</h1>
+    <b-table :items="items" :fields="fields" striped responsive="sm">
+      <template #cell(show_details)="row">
+        <b-button size="sm" @click="row.toggleDetails" class="mr-2">
+          {{ row.detailsShowing ? 'Hide' : 'Show'}} Details
+        </b-button>
+
+        <!-- As `row.showDetails` is one-way, we call the toggleDetails function on @change -->
+        <b-form-checkbox v-model="row.detailsShowing" @change="row.toggleDetails">
+          Details via check
+        </b-form-checkbox>
+      </template>
+
+      <template #row-details="row">
+        <b-card>
+          <b-row class="mb-2">
+            <b-col sm="3" class="text-sm-right"><b>Date:</b></b-col>
+            <b-col>{{ row.item.Date }}</b-col>
+          </b-row>
+
+          <b-row class="mb-2">
+            <b-col sm="3" class="text-sm-right"><b>Hour:</b></b-col>
+            <b-col>{{ row.item.Hour }}</b-col>
+          </b-row>
+          <b-row class="mb-2">
+            <b-col sm="3" class="text-sm-right"><b>Stadium:</b></b-col>
+            <b-col>{{ row.item.Stadium }}</b-col>
+          </b-row>
+
+          <b-button size="sm" @click="row.toggleDetails">Hide Details</b-button>
+        </b-card>
+      </template>
+    </b-table>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "pastMatches",
+  props: {
+      fields: {
+        type: Array,
+        required: true
+      },
+      items: {
+        type: Array,
+        required: true
+      }
+  }, 
+  mounted(){
+    console.log("past matches mounted");
+  } 
+};
+</script>
+
+<style>
+
+
+
+
+</style>
