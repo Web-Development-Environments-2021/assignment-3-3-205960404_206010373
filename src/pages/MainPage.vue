@@ -1,8 +1,9 @@
 <template>
   <div class="container" :style= image>
     <h1 class="title">Main Page</h1>
-    <LoginPage v-if="!$root.store.username"></LoginPage>
-    <FavoriteGames v-else></FavoriteGames>
+    <!-- <LoginPage v-if="!$root.store.username"></LoginPage> -->
+    <!-- <FavoriteGames v-else></FavoriteGames> -->
+     <FavoriteGames ></FavoriteGames>
     <LeagueInfo></LeagueInfo>
   </div>
 </template>
@@ -10,11 +11,11 @@
 <script>
 import LeagueInfo from "../components/League/LeagueInfo";
 import FavoriteGames from "../components/Matches/FavoriteGames";
-import LoginPage from "../pages/LoginPage";
+// import LoginPage from "../pages/LoginPage";
 export default {
   components: {
     LeagueInfo, 
-    LoginPage, 
+    // LoginPage, 
     FavoriteGames},
   data(){
       return {
