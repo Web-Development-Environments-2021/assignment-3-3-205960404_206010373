@@ -19,15 +19,56 @@
 
 <script>
 export default {
- data() {
-    return {
-      leagueName: "superliga", 
-      season: "season", 
-      stage: "stage"
-    };
+//  data() {
+//     return {
+//       leagueName: "superliga", 
+//       season: "season", 
+//       stage: "stage"
+//     };
+//   },
+  props:{
+      leagueName:{
+        Type: String,
+        required: true
+      },
+      season:{
+        Type: String,
+        required: true
+      },
+      stage:{
+        Type: String,
+        required: true
+      }
+
   },
-}
+  methods:{
+    async getDetails(){
+        try {
+          const response = await this.axios.get(
+            "http://localhost:3000/league/getDetails"
+             );
+            console.log(response);
+            this.leagueName = response.data.league_name;
+            this.season = response.data.current_season_name;
+            this.stage=response.data.current_stage_name;
+            }
+        
+        catch (err) {
+          console.log(err.response);
+          // this.form.submitError = err.response.data.message;
+          }
+        }
+      },
+  mounted()
+  {
+    this.getDetails();
+    console.log("mounted liads main page");
+  }
+};
+
 </script>
+
+
 
 <style>
 .league-preview {
