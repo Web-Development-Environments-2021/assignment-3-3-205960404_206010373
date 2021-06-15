@@ -49,8 +49,33 @@ export default {
         required: true
       }
   }, 
+   methods:{
+      async importFutureMatches(){
+      console.log("importFutureMatches");
+      try {
+
+        const response2 = await this.axios.get(
+          "http://localhost:3000/matches/futureMatches",
+        );
+        const games2 = response2.data;
+        console.log(games2);
+        this.items = [];
+        this.items.push(...games2);
+        console.log("futureeeeeeeeeeeeeee");
+
+     
+      
+      } catch (error) {
+        console.log("error in update games")
+        console.log(error);
+      }
+    }
+
+  },
   mounted(){
     console.log("future matches mounted");
+    this.importFutureMatches(); 
+
   } 
 };
 </script>
