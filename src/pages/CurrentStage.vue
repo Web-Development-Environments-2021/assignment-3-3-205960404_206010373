@@ -1,16 +1,25 @@
 <template>
  <div>
+   <div>
    <pastMatches :fields="fields"
    :items="items">
      
    </pastMatches>
+    </div>
+    <div>
+   <futureMatches :fields="fields2"
+   :items="items2">
+     
+   </futureMatches>
+    </div>
    </div>
 </template>
 
 <script>
 import pastMatches from "../components/Matches/pastMatches.vue";
+import futureMatches from "../components/Matches/futureMatches.vue";
  export default {
-  components: { pastMatches },
+  components: { pastMatches, futureMatches },
   
     data() {
       // let temp = importPastMatches();
@@ -21,15 +30,22 @@ import pastMatches from "../components/Matches/pastMatches.vue";
       return {
         fields: ['home_team', 'away_team', 'show_details'],
         items: [
-          { isActive: true, age: 40, home_team: 'Dickerson', away_team: 'Macdonald' },
-          { isActive: false, age: 21, home_team: 'Larsen', away_team: 'Shaw' },
+          {  },
+          {  },
           {
-            isActive: false,
-            age: 89,
-            home_team: 'Geneva',
-            away_team: 'Wilson'
+   
           },
-          { isActive: true, age: 38, home_team: 'Jami', away_team: 'Carney' }
+          {  }
+        ],
+
+        fields2: ['home_team', 'away_team', 'show_details'],
+        items2: [
+          {  },
+          {  },
+          {
+            
+          },
+          {  }
         ]
       }
     },
@@ -44,6 +60,16 @@ import pastMatches from "../components/Matches/pastMatches.vue";
         console.log(games);
         this.items = [];
         this.items.push(...games);
+
+        const response2 = await this.axios.get(
+          "http://localhost:3000/matches/futureMatches",
+        );
+        const games2 = response2.data;
+        console.log(games2);
+        this.items2 = [];
+        this.items2.push(...games2);
+        console.log("futureeeeeeeeeeeeeee");
+
         // console.log(response);
         // let i =0;
         // this.pastMatches.items = [];
