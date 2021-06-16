@@ -63,9 +63,11 @@ export default {
             "http://localhost:3000/logout"); 
              console.log(response); 
       }
+      
       catch (err){
         console.log(response);
       }
+      // axios.defaults.withCredentials = false;
       this.$router.push("/").catch(() => {
         this.$forceUpdate();
       });
