@@ -16,7 +16,8 @@ export default {
   components: {
     LeagueInfo, 
     // LoginPage, 
-    FavoriteGames},
+    // FavoriteGames 
+    },
   data(){
       return {
         image: {

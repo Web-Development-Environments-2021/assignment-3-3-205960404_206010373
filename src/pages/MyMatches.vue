@@ -1,14 +1,15 @@
 <template>
    <div>
-   <FavoriteGames :fields="fields"
-   :items="items"></FavoriteGames>
+   <!-- <FavoriteGames :fields="fields"
+   :items="items"></FavoriteGames> -->
+   <FavoriteGames ></FavoriteGames>
    </div>
 </template>
 
 <script>
 import FavoriteGames from "../components/Matches/FavoriteGames.vue";
  export default {
-  components: FavoriteGames ,
+  components: {FavoriteGames},
   
     data() {
      
