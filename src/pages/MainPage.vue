@@ -1,22 +1,33 @@
 <template>
-  <div class="container" :style= image>
-    <h1 class="title">Main Page</h1>
-    <!-- <LoginPage v-if="!$root.store.username"></LoginPage> -->
-    <!-- <FavoriteGames v-else></FavoriteGames> -->
-     <FavoriteGames ></FavoriteGames>
+
+<div id="wrapper" :style= image>
+  <div id="left">
     <LeagueInfo></LeagueInfo>
   </div>
+  <div id="right">
+    <LoginPage v-if="!$root.store.username"></LoginPage>
+    <FavoriteGames v-else></FavoriteGames>
+  </div>
+</div>
+
+  <!-- <div class="container" :style= image>
+    <h1 class="title">Main Page</h1>
+    <! <LoginPage v-if="!$root.store.username"></LoginPage> -->
+    <!-- <FavoriteGames v-else></FavoriteGames> -->
+     <!-- <FavoriteGames ></FavoriteGames> -->
+    <!-- <LeagueInfo></LeagueInfo> -->
+  <!-- </div> -->
 </template>
 
 <script>
 import LeagueInfo from "../components/League/LeagueInfo";
 import FavoriteGames from "../components/Matches/FavoriteGames";
-// import LoginPage from "../pages/LoginPage";
+import LoginPage from "../pages/LoginPage";
 export default {
   components: {
     LeagueInfo, 
-    // LoginPage, 
-    // FavoriteGames 
+    LoginPage,
+    FavoriteGames 
     },
   data(){
       return {
@@ -40,6 +51,16 @@ export default {
   pointer-events: none;
   cursor: default;
 }
+#wrapper {
+  display: flex;
+}
 
+#left {
+  flex: 0 0 65%;
+}
+
+#right {
+  flex: 1;
+}
 
 </style>

@@ -17,10 +17,10 @@ export default {
 </script>
 
 <style>
-body {
+/* body {
   background-image: url(C:\\Users\\User\\Desktop\\assignment-3-3-205960404_206010373\\sources\\ourpic.jpeg);
   background-repeat: no-repeat;
   background-size: cover;
-}
+} */
 
 </style>

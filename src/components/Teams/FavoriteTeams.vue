@@ -50,13 +50,13 @@ export default {
         console.log(error);
       }
     },
-    async delTeamFav(team_id){
+    async delTeamFav(team_id2){
       console.log("*******delTeamFav*******");
-      console.log(typeof team_id);
+      console.log(team_id2.toString());
       const response = await this.axios.delete(
           "http://localhost:3000/users/favoriteTeams",
           {
-            "team_id": team_id
+            team_id: team_id2
           }
         );
         console.log(response);
