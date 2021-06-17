@@ -4,11 +4,14 @@
     <!-- <b-table :items="items" :fields="fields" striped responsive="sm"> -->
         <b-table striped hover :items="items" :fields="fields">
           <template v-slot:cell(home_team)="data">
+            
       <router-link :to="`/teams/teamFullDetails/{data.value}`">{{ data.value }}</router-link>
     </template>
     <template v-slot:cell(away_team)="data">
       <router-link :to="`/teams/teamFullDetails/{data.value}`">{{ data.value }}</router-link>
     </template>
+
+
       <template #cell(show_details)="row">
         <b-button size="sm" @click="row.toggleDetails" class="mr-2">
           {{ row.detailsShowing ? 'Hide' : 'Show'}} Details
@@ -56,7 +59,6 @@ export default {
   }, 
    methods:{
       async importFutureMatches(){
-      console.log("importFutureMatches");
       try {
 
         const response2 = await this.axios.get(
@@ -66,7 +68,7 @@ export default {
         console.log(games2);
         this.items = [];
         this.items.push(...games2);
-        console.log("futureeeeeeeeeeeeeee");
+       
 
      
       
@@ -76,18 +78,13 @@ export default {
       }
     },
     async addMatchFav(matchID){
-      console.log("*******addMatchFav*******");
-      console.log(matchID);
-      console.log(this.$root.store.username);
       const response = await this.axios.post(
           "http://localhost:3000/users/favoriteMatches",
           {
             "match_id": matchID
           }
         );
-      console.log("*******FINISH addMatchFav*******");
     }
-
   },
   mounted(){
     console.log("future matches mounted");

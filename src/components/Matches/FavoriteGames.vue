@@ -12,6 +12,7 @@
 
 <template>
  <div>
+   <h1>Your Favorite Matches are:</h1>
     <b-table striped hover :items="items"></b-table>
   </div>
 </template>

@@ -1,7 +1,13 @@
 
 <template>
  <div>
-    <b-table striped hover :items="items"></b-table>
+   <h1>Your Favorite Teams are:</h1>
+    <b-table striped hover :fields="fields" :items="items">
+
+    <template #cell(button)="row"> 
+        <b-button @click="delTeamFav(row.item.team_id)">Remove Team From Favorites</b-button>
+      </template>
+    </b-table>
   </div>
 </template>
 
@@ -30,7 +36,7 @@ export default {
         const response = await this.axios.get(
           "http://localhost:3000/users/favoriteTeams"
         );
-        
+        this.fields = ["teamName", "logo", "button"];
         console.log("im here teams nowww");
         console.log(response);
         const favTeams = response.data;
@@ -43,8 +49,19 @@ export default {
         console.log("error in favTeams")
         console.log(error);
       }
+    },
+    async delTeamFav(team_id){
+      console.log("*******delTeamFav*******");
+      console.log(typeof team_id);
+      const response = await this.axios.delete(
+          "http://localhost:3000/users/favoriteTeams",
+          {
+            "team_id": team_id
+          }
+        );
+        console.log(response);
     }
-  }, 
+  },
   mounted(){
     console.log("favorite players mounted");
     this.FavoritePlayers(); 
