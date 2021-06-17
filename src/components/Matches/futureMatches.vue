@@ -79,6 +79,13 @@ export default {
       console.log("*******addMatchFav*******");
       console.log(matchID);
       console.log(this.$root.store.username);
+      const response = await this.axios.post(
+          "http://localhost:3000/users/favoriteMatches",
+          {
+            "match_id": matchID
+          }
+        );
+      console.log("*******FINISH addMatchFav*******");
     }
 
   },
