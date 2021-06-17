@@ -1,8 +1,6 @@
 <template>
    <div>
-   <!-- <FavoriteGames :fields="fields"
-   :items="items"></FavoriteGames> -->
-   <FavoriteGames ></FavoriteGames>
+   <FavoriteGames></FavoriteGames>
    </div>
 </template>
 
@@ -14,24 +12,16 @@ import FavoriteGames from "../components/Matches/FavoriteGames.vue";
     data() {
      
       return {
-        fields: ['away_team', 'show_details'],
+        fields: ['MatchId', 'Date', 'Hour', 'Stadium', 'HomeTeamID', 'AwayTeamID' , 'home_team', 'awayteam'],
         items: [
           {  }
         ],
-
-        fields_future: ['away_team', 'show_details'],
-        items_future: [
-          {  }
-        ]
       }
     },
   mounted(){
     console.log("FavoriteGames mounted");
-  
-  }
-
-
-  }
+    }
+}
 </script>
 
 <style>

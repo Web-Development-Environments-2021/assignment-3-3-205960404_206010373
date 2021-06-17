@@ -1,12 +1,26 @@
 <template>
-  <div>
-    <h1>hii bitch Dvir Teams</h1>
-  </div>
+   <div>
+   <FavoriteTeams></FavoriteTeams>
+   </div>
 </template>
 
 <script>
-export default {
-
+import FavoriteTeams from "../components/Teams/FavoriteTeams.vue";
+ export default {
+  components: {FavoriteTeams},
+  
+    data() {
+     
+      return {
+        fields: ['teamName', 'logo'],
+        items: [
+          {  }
+        ],
+      }
+    },
+  mounted(){
+    console.log("Favorite Teams mounted");
+    }
 }
 </script>
 
