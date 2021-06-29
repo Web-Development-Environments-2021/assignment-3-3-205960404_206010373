@@ -4,7 +4,7 @@
      <h1>Your Favorite Players are:</h1>
     <b-table striped hover :fields="fields" :items="items">
       <template #cell(button)="row"> 
-        <b-button @click="delPlayerFav(row.item.match_id)">Remove Player From Favorites</b-button>
+        <b-button @click="delPlayerFav(row.item.player_id)">Remove Player From Favorites</b-button>
       </template>
 
     </b-table>
@@ -50,13 +50,13 @@ export default {
         console.log(error);
       }
     },
-     async delTeamFav(team_id2){
-      console.log("*******delTeamFav*******");
-      console.log(team_id2.toString());
+     async delPlayerFav(player_id2){
+      console.log("*******delPlayerFav*******");
+      console.log(player_id2.toString());
       const response = await this.axios.delete(
           "http://localhost:3000/users/favoritePlayers",
           {
-            team_id: team_id2
+            data:{player_id: player_id2}
           }
         );
         console.log(response);

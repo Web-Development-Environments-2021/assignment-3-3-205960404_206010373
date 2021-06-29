@@ -55,13 +55,18 @@ export default {
     async delTeamFav(team_id2){
       console.log("*******delTeamFav*******");
       console.log(team_id2.toString());
+      try{
       const response = await this.axios.delete(
           "http://localhost:3000/users/favoriteTeams",
           {
-            team_id: team_id2
+            data:{team_id: team_id2}
           }
         );
         console.log(response);
+        console.log("queen")}
+      catch (error){
+        console.log(error);
+      }
     }
   },
   mounted(){
