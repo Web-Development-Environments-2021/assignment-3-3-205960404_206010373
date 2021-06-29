@@ -4,11 +4,11 @@
       <b>Game Id:</b> {{ id }}
     </div>
     <ul class="game-content">
-      <li> host: {{ hostTeam }}</li>
-      <li> guest: {{ guestTeam }}</li>
-      <li> date: {{ date }}</li>
-      <li> time: {{ hour }}</li>
-      <li> stadium: {{ stadium }}</li>
+      <li> Home Team: {{ hostTeam }}</li>
+      <li> Away Team: {{ guestTeam }}</li>
+      <li> Date: {{ date }}</li>
+      <li> Time: {{ hour }}</li>
+      <li> Stadium: {{ stadium }}</li>
     </ul>
   </div>
 </template>
