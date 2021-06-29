@@ -18,7 +18,7 @@
     </b-card>
     </div>
     <div>
-      <h3> Next Gaame in league:</h3>
+      <h3> Next Game in league:</h3>
     <GamePreview
       v-for="g in games"
       :id="g.id" 

@@ -6,7 +6,7 @@
   </div>
   <div id="right">
     <LoginPage v-if="!$root.store.username"></LoginPage>
-    <favoriteGamesMainPage v-else></favoriteGamesMainPage>
+    <favoriteGamesMainPage v-else> </favoriteGamesMainPage>
   </div>
 </div>
 
