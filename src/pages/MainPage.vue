@@ -6,7 +6,7 @@
   </div>
   <div id="right">
     <LoginPage v-if="!$root.store.username"></LoginPage>
-    <FavoriteGames v-else></FavoriteGames>
+    <favoriteGamesMainPage v-else></favoriteGamesMainPage>
   </div>
 </div>
 
@@ -21,19 +21,20 @@
 
 <script>
 import LeagueInfo from "../components/League/LeagueInfo";
-import FavoriteGames from "../components/Matches/FavoriteGames";
+import favoriteGamesMainPage from "../components/Matches/favoriteGamesMainPage";
 import LoginPage from "../pages/LoginPage";
 export default {
   components: {
     LeagueInfo, 
     LoginPage,
-    FavoriteGames 
+    favoriteGamesMainPage 
     },
   data(){
       return {
         image: {
           backgroundImage:"url(https://c4.wallpaperflare.com/wallpaper/593/957/270/background-mesh-football-sport-wallpaper-preview.jpg)",
           backgroundRepeat: "no-repeat",
+          //backgroundRepeat: "no-repeat"
           backgroundSize: "100% auto"
           }
       }
@@ -53,14 +54,21 @@ export default {
 }
 #wrapper {
   display: flex;
+  height: 100vh;
 }
 
 #left {
   flex: 0 0 65%;
+  display:inline-block;
+  text-align:center;
+  
+ 
 }
 
 #right {
   flex: 1;
+  display:inline-block;
+  text-align:center;
 }
 
 </style>

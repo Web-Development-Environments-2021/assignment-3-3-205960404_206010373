@@ -35,7 +35,7 @@
             {{$root.store.username}}
           </template>
           <b-dropdown-item href="#">Favorites</b-dropdown-item>
-          <b-dropdown-item href="#" @click="logout()" >Log Out</b-dropdown-item>
+          <b-dropdown-item href="#" @click="Logout()" >Log Out</b-dropdown-item>
         </b-nav-item-dropdown>
         </b-navbar-nav>
         <b-navbar-nav v-if="!$root.store.username">
@@ -54,7 +54,7 @@
 export default {
   name: "App",
   methods: {
-    async logout() {
+    async Logout() {
       this.$root.store.logout();
       this.$root.toast("Logout", "User logged out successfully", "success");
       try{
@@ -67,7 +67,7 @@ export default {
       catch (err){
         console.log(response);
       }
-      // axios.defaults.withCredentials = false;
+      axios.defaults.withCredentials = false;
       this.$router.push("/").catch(() => {
         this.$forceUpdate();
       });
