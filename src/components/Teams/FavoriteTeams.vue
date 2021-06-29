@@ -5,7 +5,9 @@
     <b-table striped hover :fields="fields" :items="items">
 
     <template #cell(button)="row"> 
-        <b-button @click="delTeamFav(row.item.team_id)">Remove Team From Favorites</b-button>
+        <b-button @click="delTeamFav(row.item.team_id)">Remove Team From Favorites
+          
+        </b-button>
       </template>
     </b-table>
   </div>
