@@ -5,9 +5,9 @@
             <router-link :to="{ name: 'personalPage', params: { player_id: player_id } }"><img :src=image > </router-link>
         </div>
        <div align = "center">
-        Player id: {{ player_id }} <br/>
+         <br/>
+        <h5> Player id: {{ player_id }} <br/>
         Name: {{ name }} <br/>
-        Image: {{ image }} <br/>
         Position: {{ position }} <br/>
         Team Name: {{ team_name }} <br/>
         Common Name: {{ common_name }} <br/>
@@ -15,14 +15,14 @@
         Birth Date: {{ birthdate }} <br/>
         Birth Country: {{ birthcountry }}<br/>
         Height: {{ height }} <br/>
-        Weight: {{ weight }} <br/>
+        Weight: {{ weight }} <br/> </h5>
         </div>
       </b-card-text>
   </div>
 </template>
 
 <script>
-import PlayerPreview from '../components/Players/PlayerPreview';
+
 export default {
   name: "personalPage",
   data() {
@@ -88,13 +88,21 @@ export default {
 <style>
 .details {
   display: inline-block;
-  width: 250px;
-  height: 200px;
+  width: 450px;
+  height: 480px;
   position: relative;
   margin: 10px 10px;
   border-style: solid;
   border-radius: 10px;
   border-width: 5px;
   border-color:cadetblue;
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto
+
+}
+h5 {
+  font-family: cursive;
 }
 </style>
