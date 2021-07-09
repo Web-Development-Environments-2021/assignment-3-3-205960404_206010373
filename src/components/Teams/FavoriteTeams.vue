@@ -3,8 +3,8 @@
  <div>
    <h1>Your Favorite Teams are:</h1>
     <b-table striped hover :fields="fields" :items="items">
-      <template v-slot:cell(team_id)="data">
-      <router-link :to="{ name: 'TeamPage', params: {teamID: data.value} }">{{ data.value }}</router-link>
+      <template v-slot:cell(teamName)="data">
+      <router-link :to="{ name: 'TeamPage', params: {teamID: data.item.team_id} }">{{ data.value  }} </router-link>
     </template>
   
     <template #cell(button)="row"> 
