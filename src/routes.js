@@ -53,7 +53,7 @@ const routes = [
     component: () => import("./pages/MyTeams")
   },
   {
-    path: "/PersonalPage",
+    path: "/PersonalPage/:playerID",
     name: "PersonalPage",
     component: () => import("./pages/PersonalPage")
   },
@@ -62,6 +62,7 @@ const routes = [
     name: "TeamPage",
     component: () => import("./pages/TeamPage")
   },
+  
   {
     path: "*",
     name: "notFound",

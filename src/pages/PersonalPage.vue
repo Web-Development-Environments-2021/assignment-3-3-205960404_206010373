@@ -1,17 +1,15 @@
 <template>
-  <div>
+  <div class = "details">
       <b-card-text>
-        <div>     
-          <PlayerPreview
-            :player_id="player_id" 
-            :name="name" 
-            :image="image" 
-            :position="position" 
-            :team_name="team_name" 
-            >
-          </PlayerPreview>
+        <div align = "center">
+            <router-link :to="{ name: 'personalPage', params: { player_id: player_id } }"><img :src=image > </router-link>
         </div>
-        <div align = "left">
+       <div align = "center">
+        Player id: {{ player_id }} <br/>
+        Name: {{ name }} <br/>
+        Image: {{ image }} <br/>
+        Position: {{ position }} <br/>
+        Team Name: {{ team_name }} <br/>
         Common Name: {{ common_name }} <br/>
         Nationality: {{ nationality }} <br/>
         Birth Date: {{ birthdate }} <br/>
@@ -26,11 +24,19 @@
 <script>
 import PlayerPreview from '../components/Players/PlayerPreview';
 export default {
-  components: {
-    PlayerPreview
-  },
   name: "personalPage",
   data() {
+      this.player_id= 0;
+      this.name= "";
+      this.image= "";
+      this.position= 0;
+      this.team_name= "";
+      this.common_name= "";
+      this.nationality= "";
+      this.birthdate= "";
+      this.birthcountry= "";
+      this.height= "";
+      this.weight= "";
     return {
       player_id: 0,
       name: "",
@@ -48,21 +54,25 @@ export default {
   methods: {
     async getPlayerDetails() {
         try {
+            console.log("PPPPPPPPPPPPPPPPPPPPP")
+            console.log(this.$route.params);
             const response = await this.axios.get(
-            `http://localhost:3000/players/Details/id/[${this.$route.params.id}]`
+            `http://localhost:3000/players/Details/${this.$route.params.playerID}`
             );
+            console.log("lllllllllllllllllllllllllllllllllllllllllllllllllllllllll")
             console.log(response.data);
-            this.player_id = response.data[0].id;
-            this.name = response.data[0].name;
-            this.image = response.data[0].image;
-            this.position = response.data[0].position;
-            this.team_name = response.data[0].team_name;
-            this.common_name = response.data[0].common_name;
-            this.nationality = response.data[0].nationality;
-            this.birthdate = response.data[0].birth;
-            this.birthcountry = response.data[0].birthcountry;
-            this.height = response.data[0].height;
-            this.weight = response.data[0].weight;
+            console.log(response.data.playerPreview.player_id);
+            this.player_id = response.data.playerPreview.player_id;
+            this.name = response.data.playerPreview.name;
+            this.image = response.data.playerPreview.image;
+            this.position = response.data.playerPreview.position;
+            this.team_name = response.data.playerPreview.team_name;
+            this.common_name = response.data.common_name;
+            this.nationality = response.data.nationality;
+            this.birthdate = response.data.birthdate;
+            this.birthcountry = response.data.birthcountry;
+            this.height = response.data.height;
+            this.weight = response.data.weight;
 
         } catch (error) {
         console.log(error.response);
@@ -70,11 +80,21 @@ export default {
     },
   },
   mounted(){
-    console.log(" full details");
     this.getPlayerDetails(); 
   }
 };
 </script>
 
 <style>
+.details {
+  display: inline-block;
+  width: 250px;
+  height: 200px;
+  position: relative;
+  margin: 10px 10px;
+  border-style: solid;
+  border-radius: 10px;
+  border-width: 5px;
+  border-color:cadetblue;
+}
 </style>
