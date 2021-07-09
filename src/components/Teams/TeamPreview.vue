@@ -4,10 +4,13 @@
     <b-card>
       <b-card-text>
       <div>
-        <router-link :to="{ name: 'TeamPage', params: { id: id } }"><img :src=image> </router-link>
+      <img :src=logopath>
       </div>
       <div>
-        <router-link :to="{ name: 'TeamPage', params: { id: id } }"><b>Team Name:</b> {{ name }}</router-link>
+        <b>Team Name:</b><router-link :to="{ name: 'TeamPage', params: { id: id } }"> {{ name }}</router-link>
+      </div>
+      <div>
+      <b>Team ID:</b> {{ id }}
       </div>
     </b-card-text>
     </b-card>
@@ -40,7 +43,7 @@ export default {
 .team-details {
   display: inline-block;
   width: 250px;
-  height: 200px;
+  height: 250px;
   position: relative;
   margin: 10px 10px;
   border-style: solid;

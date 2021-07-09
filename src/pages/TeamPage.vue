@@ -1,8 +1,7 @@
 <template>
   <div class="overall">
-    <h1 class="title">Team Home Page</h1>
+    <h1 class="title">{{teamName}} Page</h1>
      <div>
-  Team Detaiiiiii:
      <br>
   <TeamPreview
     :id = teamID
@@ -11,7 +10,7 @@
   </TeamPreview>
   </div>
     <div>
-      The players that play in the team:
+     <h2>Team Roster</h2> 
       <br>
     <PlayerPreview
       v-for="p in players"
@@ -117,7 +116,7 @@ export default {
         this.games = response.data.games;
         this.teamID = response.data.id;
         this.teamName = response.data.name;
-        this.logo = response.data.logopath;
+        this.logo = response.data.logoPath;
         this.teamFound = true;
         this.start = false;
 

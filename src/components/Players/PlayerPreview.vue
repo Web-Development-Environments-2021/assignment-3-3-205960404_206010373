@@ -3,20 +3,20 @@
     <b-card>
       <b-card-text>
          <div>
-            <router-link :to="{ name: 'personalPage', params: { player_id: player_id } }"><img :src=image> </router-link>
+           <img :src=image>
           </div>
           <div>
-              <router-link :to="{ name: 'personalPage', params: { player_id: player_id } }"><b>Full Name:</b> {{ name }}</router-link>
+              <b>Full Name:</b><router-link :to="{ name: 'PersonalPage', params: { playerID: player_id } }"> {{ name }}</router-link>
           </div>
       
     <div :title="id" class="player-title">
       <b>Player Id:</b> {{ player_id }}
     </div>
     <ul class="player-content">
-      <li> name: {{ name }}</li>
-      <li> image: {{ image }}</li>
-      <li> position: {{ position }}</li>
-      <li> team_name: {{ team_name }}</li>
+      <!-- <li> name: {{ name }}</li> -->
+      <!-- <li> image: {{ image }}</li> -->
+      <li> Position: {{ position }}</li>
+      <li> Team: {{ team_name }}</li>
     </ul>
     <br>
       </b-card-text>
