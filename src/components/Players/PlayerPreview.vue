@@ -21,7 +21,12 @@
     <br>
       </b-card-text>
     </b-card>
+    <div>
+        <b-button @click="addPlayerFav(player_id)">Add Player to Favorites</b-button>
   </div>
+  </div>
+
+
 </template>
 <script>
 export default {
@@ -48,6 +53,25 @@ export default {
         required: true
       }
   }, 
+  methods: {
+     async addPlayerFav(player_id2){
+      console.log("*******AddPlayerFav*******");
+      console.log(player_id2.toString());
+      try{
+      const response = await this.axios.post(
+          "http://localhost:3000/users/favoritePlayers",
+          {
+            player_id: player_id2
+          }
+        );
+        console.log(response);
+        console.log("player was added liad");
+    } catch (error) {
+      console.log(error.message);
+      console.log("error in addind player to fav")
+    }},
+
+  },
   mounted(){
     console.log("player preview mounted")
   } 

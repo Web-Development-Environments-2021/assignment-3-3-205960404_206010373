@@ -11,6 +11,8 @@
       <li> Stadium: {{ stadium }}</li>
     </ul>
   </div>
+
+  
 </template>
 
 <script>

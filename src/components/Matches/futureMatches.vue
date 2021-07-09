@@ -17,10 +17,6 @@
           {{ row.detailsShowing ? 'Hide' : 'Show'}} Details
         </b-button>
         <b-button @click="addMatchFav(row.item.MatchID)">Add Match to Favorites</b-button>
-        <!-- As `row.showDetails` is one-way, we call the toggleDetails function on @change -->
-        <!-- <b-form-checkbox v-model="row.detailsShowing" @change="row.toggleDetails">
-          Details via check
-        </b-form-checkbox> -->
       </template>
 
       <template #row-details="row">

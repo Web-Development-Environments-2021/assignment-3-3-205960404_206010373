@@ -12,6 +12,9 @@
         <b-navbar-nav>
         <b-nav-item :to="{ name: 'about' }">About</b-nav-item>
         </b-navbar-nav>
+        <b-navbar-nav>
+        <b-nav-item :to="{ name: 'about' }">Admin</b-nav-item>
+        </b-navbar-nav>
         <b-navbar-nav class="ml-auto" v-if="!$root.store.username">
         <!-- <b-navbar-nav class="ml-auto"> -->
           <b-nav-item :to="{ name: 'login' }">Login</b-nav-item>

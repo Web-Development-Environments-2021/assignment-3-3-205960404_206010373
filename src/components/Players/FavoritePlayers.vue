@@ -57,17 +57,7 @@ export default {
         console.log(error);
       }
     },
-     async delPlayerFav(player_id2){
-      console.log("*******delPlayerFav*******");
-      console.log(player_id2.toString());
-      const response = await this.axios.delete(
-          "http://localhost:3000/users/favoritePlayers",
-          {
-            data:{player_id: player_id2}
-          }
-        );
-        console.log(response);
-    },
+    
 
   }, 
   mounted(){
