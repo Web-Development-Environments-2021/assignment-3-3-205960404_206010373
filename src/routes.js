@@ -53,6 +53,11 @@ const routes = [
     component: () => import("./pages/MyTeams")
   },
   {
+    path: "/admin",
+    name: "admin",
+    component: () => import("./pages/AdminsPage")
+  },
+  {
     path: "/PersonalPage/:playerID",
     name: "PersonalPage",
     component: () => import("./pages/PersonalPage")

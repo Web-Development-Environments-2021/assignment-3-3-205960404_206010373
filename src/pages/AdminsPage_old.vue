@@ -11,7 +11,18 @@
       <b-button v-b-toggle.collapse-1 variant="primary">
         Add game to the league</b-button>
       <b-collapse id="collapse-1" class="mt-2">
-        <div>
+        <!-- <b-card>
+          <p class="card-text">
+            <br>
+            Fill the following parameters to add a game to the league
+            <br><br>
+
+            <label for="start">Start date:</label>
+            <input type="date" id="start" name="trip-start">
+            
+          </p>
+        </b-card> -->
+      <div>
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
       <b-form-group
         id="input-group-1"
@@ -70,7 +81,45 @@
       <b-button v-b-toggle.collapse-2 variant="primary"
         >Update a score of a previous game</b-button>
       <b-collapse id="collapse-2" class="mt-2">
-       
+        <b-card>
+          <br>
+          Fill the following inorder to update Game Score:
+          <br><br>
+
+          
+
+          <!-- <b-table
+            :items="this.futuregames"
+            :fields="fields"
+            :select-mode="selectMode"
+            responsive="sm"
+            ref="selectableTable"
+            selectable
+            @row-selected="onRowSelected"
+          >
+
+            <template #cell(selected)="{ rowSelected }">
+              <template v-if="rowSelected">
+                <span aria-hidden="true">&check;</span>
+                <span class="sr-only">Selected</span>
+              </template>
+              <template v-else>
+                <span aria-hidden="true">&nbsp;</span>
+                <span class="sr-only">Not selected</span>
+              </template>
+            </template>
+          </b-table> -->
+          <p><br>
+            <b-form-textarea
+              id="textarea"
+              v-model="homeeee"
+              placeholder="Home score"
+              rows="1"
+              max-rows="1"
+            ></b-form-textarea>
+            <b-button size="sm" @click="add_score">click to add score to the games</b-button>
+          </p>
+        </b-card>
 
       </b-collapse>
       
