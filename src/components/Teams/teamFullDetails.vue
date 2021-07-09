@@ -1,6 +1,15 @@
+
 <template>
   <div class="team-details">
-    <div :title="id" class="team-title">
+    <b-card>
+      <b-card-text>
+      <div>
+        <router-link :to="{ name: 'TeamPage', params: { id: id } }"><img :src=image> </router-link>
+      </div>
+      <div>
+        <router-link :to="{ name: 'TeamPage', params: { id: id } }"><b>Team Name:</b> {{ name }}</router-link>
+      </div>
+      <div :title="id" class="team-title">
       <b>Team Id:</b> {{ id }}
     </div>
     <ul class="team-content">
@@ -11,6 +20,8 @@
       <li> Past Matches: {{ pastMatches }}</li>
       <li> Future Matches: {{ futureMatches }}</li>
     </ul>
+    </b-card-text>
+    </b-card>
   </div>
 </template>
 <script>

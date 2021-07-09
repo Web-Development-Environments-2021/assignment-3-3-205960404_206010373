@@ -1,50 +1,43 @@
+
 <template>
-  <div class="game-preview">
-    <div :title="id" class="game-title">
-      <b>Game Id:</b> {{ id }}
-    </div>
-    <ul class="game-content">
-      <li> host: {{ hostTeam }}</li>
-      <li> guest: {{ guestTeam }}</li>
-      <li> date: {{ date }}</li>
-      <li> time: {{ hour }}</li>
-    </ul>
+  <div class="team-details">
+    <b-card>
+      <b-card-text>
+      <div>
+        <router-link :to="{ name: 'TeamPage', params: { id: id } }"><img :src=image> </router-link>
+      </div>
+      <div>
+        <router-link :to="{ name: 'TeamPage', params: { id: id } }"><b>Team Name:</b> {{ name }}</router-link>
+      </div>
+    </b-card-text>
+    </b-card>
   </div>
 </template>
-
 <script>
 export default {
-  name: "GamePreview",
+  name: "TeamPreview",
   props: {
       id: {
-        type: Number,
-        required: true
-      },
-      hostTeam: {
         type: String,
         required: true
       },
-      guestTeam: {
+      name: {
         type: String,
         required: true
       },
-      date: {
+      logopath: {
         type: String,
         required: true
       },
-      hour: {
-        type: String,
-        required: true
-      }
   }, 
   mounted(){
-    console.log("game preview mounted")
+    console.log("player preview mounted")
   } 
 };
 </script>
 
 <style>
-.game-preview {
+.team-details {
   display: inline-block;
   width: 250px;
   height: 200px;
@@ -56,17 +49,14 @@ export default {
   border-color:cadetblue;
 }
 
-.game-preview .game-title {
+.team-details .team-title {
   text-align: center;
   text-transform: uppercase;
   color:  rgb(111, 197, 157);
 }
 
-.game-preview .game-content {
+.team-details .team-content {
   width: 100%;
   overflow: hidden;
 }
-
-
-
 </style>

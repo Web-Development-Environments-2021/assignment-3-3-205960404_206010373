@@ -3,10 +3,10 @@
     <b-card>
       <b-card-text>
          <div>
-            <router-link :to="{ name: 'player_page_by_id', params: { player_id: player_id } }"><img :src=image> </router-link>
+            <router-link :to="{ name: 'personalPage', params: { player_id: player_id } }"><img :src=image> </router-link>
           </div>
           <div>
-              <router-link :to="{ name: 'player_page_by_id', params: { player_id: player_id } }"><b>Full Name:</b> {{ name }}</router-link>
+              <router-link :to="{ name: 'personalPage', params: { player_id: player_id } }"><b>Full Name:</b> {{ name }}</router-link>
           </div>
       
     <div :title="id" class="player-title">
@@ -18,6 +18,7 @@
       <li> position: {{ position }}</li>
       <li> team_name: {{ team_name }}</li>
     </ul>
+    <br>
       </b-card-text>
     </b-card>
   </div>
@@ -54,10 +55,12 @@ export default {
 </script>
 
 <style>
+
+
 .player-preview {
   display: inline-block;
   width: 250px;
-  height: 200px;
+  height: 550px;
   position: relative;
   margin: 10px 10px;
   border-style: solid;

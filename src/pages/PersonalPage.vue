@@ -11,10 +11,10 @@
             >
           </PlayerPreview>
         </div>
-        <div align = "center">
+        <div align = "left">
         Common Name: {{ common_name }} <br/>
         Nationality: {{ nationality }} <br/>
-        Birth Date: {{ birth }} <br/>
+        Birth Date: {{ birthdate }} <br/>
         Birth Country: {{ birthcountry }}<br/>
         Height: {{ height }} <br/>
         Weight: {{ weight }} <br/>
@@ -29,7 +29,7 @@ export default {
   components: {
     PlayerPreview
   },
-  name: "player_page_by_id",
+  name: "personalPage",
   data() {
     return {
       player_id: 0,
@@ -64,8 +64,8 @@ export default {
             this.height = response.data[0].height;
             this.weight = response.data[0].weight;
 
-        } catch (err) {
-        console.log(err.response);
+        } catch (error) {
+        console.log(error.response);
         }
     },
   },

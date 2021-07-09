@@ -1,20 +1,30 @@
 <template>
   <div class="overall">
     <h1 class="title">Team Home Page</h1>
+     <div>
+  Team Detaiiiiii:
+     <br>
+  <TeamPreview
+    :id = teamID
+    :name = teamName
+    :logopath = logo>
+  </TeamPreview>
+  </div>
     <div>
       The players that play in the team:
       <br>
     <PlayerPreview
       v-for="p in players"
-      :playerId="p.player_id"
-      :fullname="p.name"
+      :player_id="p.player_id"
+      :name="p.name"
       :image="p.image"
       :position="p.position" 
-      :teamName="p.team_name"
-      :key="p.id"></PlayerPreview>
+      :team_name="p.team_name"
+      :key="p"></PlayerPreview>
   </div>
   <br>
-<br>
+  <br>
+ 
   <div>
     <!-- <div>
       The coach of the team:
@@ -40,8 +50,8 @@
       :hour="g.hour"
       :hostTeam="g.hostTeam" 
       :guestTeam="g.guestTeam"
-      :field="g.field"
-      :key="g.id"></GamePreview>
+      :stadium="g.stadium"
+      :key="g"></GamePreview>
   </div>
 </div>
         
@@ -57,14 +67,19 @@ Sorry! There is no team with this id
 </template>
 
 <script>
+import TeamPreview  from '../components/Teams/TeamPreview';
 import PlayerPreview from "../components/Players/PlayerPreview";
 // import CoachPreview from "../components/CoachPreview";
 import GamePreview from "../components/Matches/GamePreview";
+//import TeamFullDetails from '../components/Teams/teamFullDetails.vue';
+
 export default {
     components: {
+        TeamPreview,
         PlayerPreview,
         // CoachPreview,
-        GamePreview
+        GamePreview,
+        
     },
  data() {
    this.players = [];
@@ -72,13 +87,18 @@ export default {
    this.games = [];
    this.teamFound = false;
    this.start = true;
-   
+   this.teamID = "";
+   this.teamName= "";
+   this.logo = "";
     return {
       searchQuery:"",
       players: "",
       coach: "",
       teamFound: false,
-      start: true
+      start: true,
+      teamID : "",
+      teamName: "",
+      logo : ""
     };
   },
   mounted(){
@@ -87,7 +107,7 @@ export default {
   methods: {
     async getTeamDetails() {
       try {
-        console.log(this.$route.params.TeamName);
+        console.log(this.$route.params);
         const response = await this.axios.get(
           `http://localhost:3000/teams/teamFullDetails/${this.$route.params.teamID}`
         );
@@ -95,7 +115,9 @@ export default {
         this.players = response.data.players;
        // this.coach = response.data.coach;
         this.games = response.data.games;
-
+        this.teamID = response.data.id;
+        this.teamName = response.data.name;
+        this.logo = response.data.logopath;
         this.teamFound = true;
         this.start = false;
 
