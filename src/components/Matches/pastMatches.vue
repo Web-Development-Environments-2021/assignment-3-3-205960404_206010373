@@ -67,28 +67,28 @@ export default {
         required: true
       }
   }, 
-  methods:{
-      async importPastMatches(){
-      console.log("importPastMaatches");
-      try {
-        const response = await this.axios.get(
-          "http://localhost:3000/matches/pastMatches",
-        );
-        const games = response.data;
-        console.log(games);
-        this.items = [];
-        this.items.push(...games);     
+  // methods:{
+  //     async importPastMatches(){
+  //     console.log("importPastMaatches");
+  //     try {
+  //       const response = await this.axios.get(
+  //         "http://localhost:3000/matches/pastMatches",
+  //       );
+  //       const games = response.data;
+  //       console.log(games);
+  //       this.items = [];
+  //       this.items.push(...games);     
       
-      } catch (error) {
-        console.log("error in update games")
-        console.log(error);
-      }
-    }
+  //     } catch (error) {
+  //       console.log("error in update games")
+  //       console.log(error);
+  //     }
+  //   }
 
-  },
+  // },
   mounted(){
     console.log("past matches mounted");
-      this.importPastMatches(); 
+   //   this.importPastMatches(); 
   } 
 };
 </script>

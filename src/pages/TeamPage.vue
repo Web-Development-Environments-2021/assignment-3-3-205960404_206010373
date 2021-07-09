@@ -42,7 +42,11 @@
   <div>
       The games that the team played:
       <br>
-    <GamePreview
+      <pastMatches :fields="past_fields"
+   :items="past_items">
+     
+   </pastMatches>
+    <!-- <GamePreview
       v-for="g in games"
       :id="g.id"
       :date="g.date"
@@ -50,7 +54,7 @@
       :hostTeam="g.hostTeam" 
       :guestTeam="g.guestTeam"
       :stadium="g.stadium"
-      :key="g"></GamePreview>
+      :key="g"></GamePreview> -->
   </div>
 </div>
         
@@ -69,16 +73,16 @@ Sorry! There is no team with this id
 import TeamPreview  from '../components/Teams/TeamPreview';
 import PlayerPreview from "../components/Players/PlayerPreview";
 // import CoachPreview from "../components/CoachPreview";
-import GamePreview from "../components/Matches/GamePreview";
+//import GamePreview from "../components/Matches/GamePreview";
 //import TeamFullDetails from '../components/Teams/teamFullDetails.vue';
-
+import pastMatches from "../components/Matches/pastMatches";
 export default {
     components: {
         TeamPreview,
         PlayerPreview,
         // CoachPreview,
-        GamePreview,
-        
+       // GamePreview,
+        pastMatches
     },
  data() {
    this.players = [];
@@ -89,7 +93,11 @@ export default {
    this.teamID = "";
    this.teamName= "";
    this.logo = "";
-    return {
+   this.past_fields = ['home_team', 'away_team', 'show_details'];
+   this.past_items = [];
+   this.future_fields = ['home_team', 'away_team', 'show_details'];
+   this.future_items = [];
+   return {
       searchQuery:"",
       players: "",
       coach: "",
@@ -97,7 +105,11 @@ export default {
       start: true,
       teamID : "",
       teamName: "",
-      logo : ""
+      logo : "",
+      past_fields : ['home_team', 'away_team', 'show_details'],
+      past_items : [],
+      future_fields : ['home_team', 'away_team', 'show_details'],
+      future_items : []
     };
   },
   mounted(){
@@ -113,7 +125,13 @@ export default {
         console.log(response);
         this.players = response.data.players;
        // this.coach = response.data.coach;
-        this.games = response.data.games;
+        const past_matches = response.data.pastMatches;
+        console.log(past_matches)
+        this.past_items = [];
+        this.past_items.push(...past_matches);
+        const future_matches = response.data.futureMatches;
+        this.future_items = [];
+        this.future_items.push(...future_matches);
         this.teamID = response.data.id;
         this.teamName = response.data.name;
         this.logo = response.data.logoPath;

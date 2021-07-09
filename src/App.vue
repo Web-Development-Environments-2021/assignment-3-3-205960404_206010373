@@ -32,18 +32,18 @@
         <b-navbar-nav v-if="$root.store.username">
         <b-nav-item-dropdown right >
           <template #button-content>
-            {{$root.store.username}}
+            Hello, {{$root.store.username}}
           </template>
-          <b-dropdown-item href="#">Favorites</b-dropdown-item>
+          <!-- <b-dropdown-item href="#">Favorites</b-dropdown-item> -->
           <b-dropdown-item href="#" @click="Logout()" >Log Out</b-dropdown-item>
         </b-nav-item-dropdown>
         </b-navbar-nav>
         <b-navbar-nav v-if="!$root.store.username">
           <b-nav-item >Hello, Guest </b-nav-item>
         </b-navbar-nav>
-        <b-navbar-nav v-if="$root.store.username">
+        <!-- <b-navbar-nav v-if="$root.store.username">
           <b-nav-item >Hello, {{$root.store.username}}</b-nav-item>
-        </b-navbar-nav>
+        </b-navbar-nav> -->
       </b-collapse>
     </b-navbar>
     <router-view />
