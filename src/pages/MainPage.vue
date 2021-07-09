@@ -2,11 +2,11 @@
 
 <div id="wrapper" :style= image>
   <div id="left">
-    <LeagueInfo></LeagueInfo>
+    <LeagueInfo ></LeagueInfo>
   </div>
   <div id="right">
-    <LoginPage v-if="!$root.store.username"></LoginPage>
-    <favoriteGamesMainPage v-else> </favoriteGamesMainPage>
+    <LoginPage v-if="!$root.store.username" ></LoginPage>
+    <favoriteGamesMainPage v-else > </favoriteGamesMainPage>
   </div>
 </div>
 
@@ -36,9 +36,20 @@ export default {
           backgroundRepeat: "no-repeat",
           //backgroundRepeat: "no-repeat"
           backgroundSize: "100% auto"
-          }
+          },
+          componentKey: true,
       }
-    }
+    },
+    methods: {
+    forceRerender() {
+      this.componentKey += 1;
+      this.$children.LeagueInfo.$forceUpdate();
+    },
+    mounted() {
+      console.log("@#%@#%$@#$#@#$#");
+      forceRerender();
+    },
+  }
 };
 </script>
 

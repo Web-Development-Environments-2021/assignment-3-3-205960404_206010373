@@ -38,36 +38,37 @@
 <script>
 import GamePreview from "../Matches/GamePreview.vue";
 export default {
-//  data() {
-//     return {
-//       leagueName: "superliga", 
-//       season: "season", 
-//       stage: "stage"
-//     };
-//   },
+ data() {
+    return {
+      leagueName: "", 
+      season: "", 
+      stage: "",
+      games: [],
+    };
+  },
   components: {
     GamePreview
   }, 
-  props:{
-      leagueName:{
-        Type: String,
-        required: true
-      },
-      season:{
-        Type: String,
-        required: true
-      },
-      stage:{
-        Type: String,
-        required: true
-      },
-      games:{
-        Type: Array,
-        required: true
-      }
+  // props:{
+  //     leagueName:{
+  //       Type: String,
+  //       required: true
+  //     },
+  //     season:{
+  //       Type: String,
+  //       required: true
+  //     },
+  //     stage:{
+  //       Type: String,
+  //       required: true
+  //     },
+  //     games:{
+  //       Type: Array,
+  //       required: true
+  //     }
 
 
-  },
+  // },
   methods:{
     async getDetails(){
       // var dv1 = document.getElementById('div1');
