@@ -6,11 +6,13 @@
       <template v-slot:cell(team_id)="data">
       <router-link :to="{ name: 'TeamPage', params: {teamID: data.value} }">{{ data.value }}</router-link>
     </template>
+  
     <template #cell(button)="row"> 
-        <b-button @click="delTeamFav(row.item.team_id)">Remove Team From Favorites
-          
-        </b-button>
-      </template>
+        <b-button @click="delTeamFav(row.item.team_id)">Remove Team From Favorites </b-button>
+    </template>
+    <template v-slot:cell(logo)="data">
+    <img :src="data.value" height="70px">
+     </template>
     </b-table>
   </div>
 </template>
@@ -40,7 +42,7 @@ export default {
         const response = await this.axios.get(
           "http://localhost:3000/users/favoriteTeams"
         );
-        this.fields = ["team_id","teamName", "logo", "button"];
+        this.fields = [ "logo","team_id","teamName","button"];
         console.log("im here teams nowww");
         console.log(response);
         const favTeams = response.data;

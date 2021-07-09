@@ -1,15 +1,4 @@
 
-  <!-- <div>
-    <GamePreview
-      v-for="g in games"
-      :id="g.id" 
-      :hostTeam="g.hostTeam" 
-      :guestTeam="g.guestTeam" 
-      :date="g.date" 
-      :hour="g.hour" 
-      :key="g.id"></GamePreview>
-  </div> -->
-
 <template>
  <div>
    <h1>Your Favorite Matches are:</h1>
@@ -17,22 +6,21 @@
       <template #cell(button)="row"> 
         <b-button @click="delMatchFav(row.item.MatchId)">Remove Match From Favorites</b-button>
       </template>
-
-
+      <template v-slot:cell(HomeTeamID)="data">
+      <router-link :to="{ name: 'TeamPage', params: {HomeTeamID: data.value } }">{{ data.value }}</router-link>
+    </template>
+     <template v-slot:cell(AwayTeamID)="data">
+      <router-link :to="{ name: 'TeamPage', params: {AwayTeamID: data.value } }">{{ data.value }}</router-link>
+    </template>
     </b-table>
   </div>
 </template>
 
 <script>
-// import GamePreview from "./GamePreview.vue";
 export default {
   name: "FavoriteGames",
-  // components: {
-  //   GamePreview
-  // }, 
   data() {
-    return {
-      
+    return { 
     };
   },
    props: {
