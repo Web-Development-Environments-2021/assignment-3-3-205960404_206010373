@@ -56,6 +56,10 @@
       :stadium="g.stadium"
       :key="g"></GamePreview> -->
   </div>
+  <div>
+    <futureMatches :fields="future_fields"
+   :items="future_items"></futureMatches>
+  </div>
 </div>
         
       
@@ -76,13 +80,15 @@ import PlayerPreview from "../components/Players/PlayerPreview";
 //import GamePreview from "../components/Matches/GamePreview";
 //import TeamFullDetails from '../components/Teams/teamFullDetails.vue';
 import pastMatches from "../components/Matches/pastMatches";
+import futureMatches from "../components/Matches/futureMatches";
 export default {
     components: {
         TeamPreview,
         PlayerPreview,
         // CoachPreview,
        // GamePreview,
-        pastMatches
+        pastMatches,
+        futureMatches
     },
  data() {
    this.players = [];
