@@ -1,7 +1,16 @@
 <template>
   <div class="player-preview">
+    <b-card>
+      <b-card-text>
+         <div>
+            <router-link :to="{ name: 'player_page_by_id', params: { player_id: player_id } }"><img :src=image> </router-link>
+          </div>
+          <div>
+              <router-link :to="{ name: 'player_page_by_id', params: { player_id: player_id } }"><b>Full Name:</b> {{ name }}</router-link>
+          </div>
+      
     <div :title="id" class="player-title">
-      <b>Game Id:</b> {{ player_id }}
+      <b>Player Id:</b> {{ player_id }}
     </div>
     <ul class="player-content">
       <li> name: {{ name }}</li>
@@ -9,6 +18,8 @@
       <li> position: {{ position }}</li>
       <li> team_name: {{ team_name }}</li>
     </ul>
+      </b-card-text>
+    </b-card>
   </div>
 </template>
 <script>

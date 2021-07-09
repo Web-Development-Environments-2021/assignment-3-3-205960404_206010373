@@ -3,6 +3,10 @@
  <div>
      <h1>Your Favorite Players are:</h1>
     <b-table striped hover :fields="fields" :items="items">
+      <template v-slot:cell(name)="data">
+      <router-link :to="`{ name: 'PesonalPage', params: {placeName: detail.name } }`" @click="see()">{{ data.value }}</router-link>
+    </template>
+      
       <template #cell(button)="row"> 
         <b-button @click="delPlayerFav(row.item.player_id)">Remove Player From Favorites</b-button>
       </template>
@@ -60,6 +64,9 @@ export default {
           }
         );
         console.log(response);
+    },
+    async see(){
+      console.log("$#@@#$$@@$#@#$@#$#$@$#");
     }
   }, 
   mounted(){

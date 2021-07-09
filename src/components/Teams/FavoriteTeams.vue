@@ -3,7 +3,9 @@
  <div>
    <h1>Your Favorite Teams are:</h1>
     <b-table striped hover :fields="fields" :items="items">
-
+      <template v-slot:cell(team_id)="data">
+      <router-link :to="{ name: 'TeamPage', params: {teamID: data.value} }">{{ data.value }}</router-link>
+    </template>
     <template #cell(button)="row"> 
         <b-button @click="delTeamFav(row.item.team_id)">Remove Team From Favorites
           
@@ -38,7 +40,7 @@ export default {
         const response = await this.axios.get(
           "http://localhost:3000/users/favoriteTeams"
         );
-        this.fields = ["teamName", "logo", "button"];
+        this.fields = ["team_id","teamName", "logo", "button"];
         console.log("im here teams nowww");
         console.log(response);
         const favTeams = response.data;

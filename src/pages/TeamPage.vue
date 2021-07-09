@@ -7,7 +7,7 @@
     <PlayerPreview
       v-for="p in players"
       :playerId="p.player_id"
-      :fullname="p.fullname"
+      :fullname="p.name"
       :image="p.image"
       :position="p.position" 
       :teamName="p.team_name"
@@ -16,7 +16,7 @@
   <br>
 <br>
   <div>
-    <div>
+    <!-- <div>
       The coach of the team:
       <br>
     <CoachPreview
@@ -25,7 +25,7 @@
       :image="this.coach.image"
       :teamName="this.coach.team_name" 
       ></CoachPreview>
-  </div>
+  </div> -->
 
     
 <br>
@@ -57,18 +57,18 @@ Sorry! There is no team with this id
 </template>
 
 <script>
-import PlayerPreview from "../components/PlayerPreview";
-import CoachPreview from "../components/CoachPreview";
-import GamePreview from "../components/GamePreview";
+import PlayerPreview from "../components/Players/PlayerPreview";
+// import CoachPreview from "../components/CoachPreview";
+import GamePreview from "../components/Matches/GamePreview";
 export default {
     components: {
         PlayerPreview,
-        CoachPreview,
+        // CoachPreview,
         GamePreview
     },
  data() {
    this.players = [];
-   this.coach = {};
+   // this.coach = {};
    this.games = [];
    this.teamFound = false;
    this.start = true;
@@ -81,32 +81,34 @@ export default {
       start: true
     };
   },
+  mounted(){
+      this.getTeamDetails();
+  },
   methods: {
-    async searchById() {
+    async getTeamDetails() {
       try {
+        console.log(this.$route.params.TeamName);
         const response = await this.axios.get(
-          `http://localhost:3000/teams/teamDetails/${this.searchQuery}`,
-          {
-  
-          }
+          `http://localhost:3000/teams/teamFullDetails/${this.$route.params.teamID}`
         );
-        
+        console.log(response);
         this.players = response.data.players;
-        this.coach = response.data.coach;
+       // this.coach = response.data.coach;
         this.games = response.data.games;
 
         this.teamFound = true;
         this.start = false;
 
       } catch (err) {
+        console.log(err.message);
         this.teamFound = false;
         this.start = false;
       }
     },
-
+//?????????????????????????????
     newSearch() {
 
-      this.searchById();
+      this.getTeamDetails();
     }
 
   }
