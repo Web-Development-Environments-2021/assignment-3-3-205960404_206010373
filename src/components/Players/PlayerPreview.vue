@@ -88,6 +88,7 @@ export default {
   border-radius: 10px;
   border-width: 5px;
   border-color:cadetblue;
+  background-color: black;
 }
 
 .player-preview .player-title {
@@ -99,5 +100,14 @@ export default {
 .player-preview .player-content {
   width: 100%;
   overflow: hidden;
+  border-width: 0ch;
+  border-color: black;
+}
+.card-body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.25rem;
+    background-color: black;
+    
 }
 </style>

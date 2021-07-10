@@ -8,8 +8,11 @@
     :name = teamName
     :logopath = logo>
   </TeamPreview>
+     <br>
+  <b-button v-if="$root.store.username" @click="addTeamFav()">Add Team To Favorites <br> </b-button>
   </div>
     <div>
+    <br>
      <h2>Team Roster</h2> 
       <br>
     <PlayerPreview
@@ -136,6 +139,21 @@ export default {
         this.start = false;
       }
     },
+     async addTeamFav(){
+      
+      try{
+      const response = await this.axios.post(
+          "http://localhost:3000/users/favoriteTeams",
+          {
+            team_id: this.teamID
+          }
+        );
+        this.$root.toast("favoritePlayer", "The Team was successfully added as favorite", "success");
+      
+    } catch (error) {
+       this.$root.toast("favoritePlayer", "The Team is already in favorites", "success");
+    
+    }},
   }
 }
 

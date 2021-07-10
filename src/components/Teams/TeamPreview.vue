@@ -6,7 +6,7 @@
       <div>
       <img :src=logopath>
       </div>
-      <div>
+      <div >
         <b>Team Name:</b><router-link :to="{ name: 'TeamPage', params: { id: id } }"> {{ name }}</router-link>
       </div>
       <div>
@@ -49,6 +49,8 @@ export default {
   border-radius: 10px;
   border-width: 5px;
   border-color:cadetblue;
+  text-align: center;
+
 }
 
 .team-details .team-title {
@@ -61,4 +63,5 @@ export default {
   width: 100%;
   overflow: hidden;
 }
+
 </style>

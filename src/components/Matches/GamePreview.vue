@@ -45,6 +45,7 @@ export default {
       }
   }, 
   mounted(){
+    console.log("game preview mounted")
   } 
 };
 </script>
