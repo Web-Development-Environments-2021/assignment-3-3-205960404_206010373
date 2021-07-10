@@ -26,7 +26,9 @@ import {
   LayoutPlugin, 
   InputGroupPlugin,
   TablePlugin,
-  FormRadioPlugin
+  FormRadioPlugin,
+  FormDatepickerPlugin,
+  FormTimepickerPlugin
 
 } from "bootstrap-vue";
 [
@@ -42,7 +44,9 @@ import {
   LayoutPlugin, 
   InputGroupPlugin,
   TablePlugin,
-  FormRadioPlugin
+  FormRadioPlugin,
+  FormDatepickerPlugin,
+  FormTimepickerPlugin
 ].forEach((x) => Vue.use(x));
 Vue.use(Vuelidate);
 
