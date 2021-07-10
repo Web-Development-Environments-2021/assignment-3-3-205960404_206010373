@@ -223,12 +223,12 @@ export default {
 }
 
 #search-input-position {
-  margin-left: 20px; 
+  margin: 0 auto;
   width: 500px; 
 }
 
 #search-input-Team {
-  margin-left: 20px; 
+  margin: 0 auto;
   width: 500px; 
 }
 </style>
