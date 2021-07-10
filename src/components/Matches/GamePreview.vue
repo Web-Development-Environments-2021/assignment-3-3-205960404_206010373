@@ -54,7 +54,7 @@ export default {
 .game-preview {
   display: inline-block;
   width: 250px;
-  height: 200px;
+  height: 170px;
   position: relative;
   border-style: solid;
   border-radius: 10px;

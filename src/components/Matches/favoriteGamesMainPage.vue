@@ -85,4 +85,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+h4, .h4 {
+    font-size: 1.5rem;
+    margin-top: 25px;
+}
+</style>

@@ -9,14 +9,6 @@
     <favoriteGamesMainPage v-else > </favoriteGamesMainPage>
   </div>
 </div>
-
-  <!-- <div class="container" :style= image>
-    <h1 class="title">Main Page</h1>
-    <! <LoginPage v-if="!$root.store.username"></LoginPage> -->
-    <!-- <FavoriteGames v-else></FavoriteGames> -->
-     <!-- <FavoriteGames ></FavoriteGames> -->
-    <!-- <LeagueInfo></LeagueInfo> -->
-  <!-- </div> -->
 </template>
 
 <script>
@@ -34,7 +26,6 @@ export default {
         image: {
           backgroundImage:"url(https://wallpapercave.com/wp/wp5254013.jpg)",
           backgroundRepeat: "no-repeat",
-          //backgroundRepeat: "no-repeat"
           backgroundSize: "100% auto"
           },
           componentKey: true,
@@ -59,13 +50,11 @@ export default {
   -webkit-filter: blur(5px); /* Safari 6.0 - 9.0 */
   filter: blur(2px);
 }
-::v-deep .blur .recipe-preview {
-  pointer-events: none;
-  cursor: default;
-}
+
 #wrapper {
   display: flex;
   height: 100vh;
+  background-color: black;
 }
 
 #left {
@@ -81,5 +70,7 @@ export default {
   display:inline-block;
   text-align:center;
 }
+
+
 
 </style>

@@ -44,32 +44,8 @@ export default {
   components: {
     GamePreview
   }, 
-  // props:{
-  //     leagueName:{
-  //       Type: String,
-  //       required: true
-  //     },
-  //     season:{
-  //       Type: String,
-  //       required: true
-  //     },
-  //     stage:{
-  //       Type: String,
-  //       required: true
-  //     },
-  //     games:{
-  //       Type: Array,
-  //       required: true
-  //     }
-
-
-  // },
   methods:{
     async getDetails(){
-      // var dv1 = document.getElementById('div1');
-      // var dv2 = document.getElementById('div2');
-      // dv2.style.display = 'none';
-      // dv1.style.display = 'block';
         try {
           const response = await this.axios.get(
             "http://localhost:3000/league/getDetails"
@@ -95,11 +71,7 @@ export default {
             stadium: response2.data[0].Stadium 
           })
           }
-
             }
-
-          
-        
         catch (err) {
           console.log(err.response);
           console.log(err.message);
@@ -111,7 +83,6 @@ export default {
           dv2.style.display = 'block';
         
         }
-        
       },
   mounted()
   {
@@ -120,16 +91,11 @@ export default {
   },
   created()
   {
-    
     this.getDetails();
     console.log("mounted liads main page");
   }
-
 };
-
 </script>
-
-
 
 <style>
 .league-preview {
@@ -169,8 +135,5 @@ h5 {
   margin-top: 20px;
   margin-left: 40px;
 }
-
-
-
 
 </style>
