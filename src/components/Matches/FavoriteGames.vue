@@ -6,11 +6,14 @@
       <template #cell(button)="row"> 
         <b-button @click="delMatchFav(row.item.MatchId)">Remove Match From Favorites</b-button>
       </template>
-      <template v-slot:cell(HomeTeamID)="data">
-      <router-link :to="{ name: 'TeamPage', params: {HomeTeamID: data.value } }">{{ data.value }}</router-link>
+      <template v-slot:cell(home_team)="data">
+      <router-link :to="{ name: 'TeamPage', params: {HomeTeamID: data.item.HomeTeamID } }">{{ data.value }}</router-link>
     </template>
-     <template v-slot:cell(AwayTeamID)="data">
-      <router-link :to="{ name: 'TeamPage', params: {AwayTeamID: data.value } }">{{ data.value }}</router-link>
+     <template v-slot:cell(away_team)="data">
+      <router-link :to="{ name: 'TeamPage', params: {AwayTeamID: data.item.AwayTeamID } }">{{ data.value }}</router-link>
+    </template>
+    <template v-slot:cell(Date)="data">
+      {{ data.value.slice(0,10) }}
     </template>
     </b-table>
   </div>
@@ -58,13 +61,18 @@ export default {
     async delMatchFav(match_id2){
       console.log("*******delMatchFav*******");
       console.log(match_id2);
+      try{
       const response = await this.axios.delete(
           "http://localhost:3000/users/favoriteMatches",
           {
             data: {match_id: match_id2}
           }
         );
-        console.log(response);
+        this.$root.toast("favoriteGames", "The Match was successfully deleted as favorite", "success");
+        console.log(response);}
+        catch (error){
+        console.log(error);
+      }
     }
   }, 
   mounted(){

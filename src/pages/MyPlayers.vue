@@ -25,5 +25,9 @@ import FavoritePlayers from "../components/Players/FavoritePlayers.vue";
 </script>
 
 <style>
-
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #b8daff;
+}
 </style>

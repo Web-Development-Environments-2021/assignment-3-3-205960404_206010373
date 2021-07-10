@@ -283,6 +283,7 @@ export default {
     },
     async Register() {
       try {
+        
         const response = await this.axios.post(
           "http://localhost:3000/Register",
           {
@@ -295,15 +296,17 @@ export default {
             urlImage: this.form.urlImage
           }
         );
+        this.$root.toast("Register", "User was Registerd successfully", "success");
         this.$router.push("/login");
         // console.log(response);
       } catch (err) {
         console.log(err.response);
         this.form.submitError = err.response.data.message;
+        this.$root.toast("Register", "There was a problem with your Register, Try a diffrent user Name", "fail");
       }
     },
     onRegister() {
-      // console.log("register method called");
+      
       this.$v.form.$touch();
       if (this.$v.form.$anyError) {
         return;
@@ -334,5 +337,6 @@ export default {
 .container {
   max-width: 500px;
   text-align: center;
+  color: white;
 }
 </style>

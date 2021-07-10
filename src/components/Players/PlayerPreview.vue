@@ -64,6 +64,7 @@ export default {
             player_id: player_id2
           }
         );
+        this.$root.toast("favoritePlayer", "The Player was successfully added as favorite", "success");
         console.log(response);
         console.log("player was added liad");
     } catch (error) {

@@ -5,10 +5,10 @@
         <b-table striped hover :items="items" :fields="fields">
           <template v-slot:cell(home_team)="data">
             
-      <router-link :to="`/teams/teamFullDetails/{data.value}`">{{ data.value }}</router-link>
+      <router-link :to="{ name: 'TeamPage', params: { teamID: data.item.HomeTeamID } }">{{ data.value }}</router-link>
     </template>
     <template v-slot:cell(away_team)="data">
-      <router-link :to="`/teams/teamFullDetails/{data.value}`">{{ data.value }}</router-link>
+       <router-link :to="{ name: 'TeamPage', params: { teamID:  data.item.AwayTeamID } }">{{ data.value }}</router-link>
     </template>
 
 
@@ -23,7 +23,7 @@
         <b-card>
           <b-row class="mb-2">
             <b-col sm="3" class="text-sm-right"><b>Date:</b></b-col>
-            <b-col>{{ row.item.Date }}</b-col>
+            <b-col>{{ row.item.Date.slice(0,10) }}</b-col>
           </b-row>
           <b-row class="mb-2">
             <b-col sm="3" class="text-sm-right"><b>Hour:</b></b-col>
@@ -80,6 +80,7 @@ export default {
             "match_id": matchID
           }
         );
+        this.$root.toast("futureGames", "The Match was successfully added as favorite", "success");
     }
   },
   mounted(){

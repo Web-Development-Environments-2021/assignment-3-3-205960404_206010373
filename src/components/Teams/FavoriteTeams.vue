@@ -49,7 +49,7 @@ export default {
         console.log(favTeams)
         this.items = [];
         this.items.push(...favTeams);
-
+        // this.$root.toast("favoriteTeams", "The Team was successfully added as favorite", "success");
         console.log(response);
       } catch (error) {
         console.log("error in favTeams")
@@ -66,6 +66,7 @@ export default {
             data:{team_id: team_id2}
           }
         );
+        this.$root.toast("favoriteTeams", "The Team was successfully deleted as favorite", "success");
         console.log(response);
         console.log("queen")}
       catch (error){
