@@ -92,8 +92,16 @@ export default {
 </script>
 
 <style>
-
-
+.col{
+    flex-basis: 0;
+    flex-grow: 1;
+    min-width: 0;
+    max-width: 100%;
+    color: blue;
+}
+b{
+      color: blue;
+}
 
 
 </style>

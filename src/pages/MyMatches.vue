@@ -31,4 +31,5 @@ import FavoriteGames from "../components/Matches/FavoriteGames.vue";
     color: #b8daff;
 }
 
+
 </style>

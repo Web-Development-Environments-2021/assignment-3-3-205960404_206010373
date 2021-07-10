@@ -7,7 +7,8 @@
       As part of the Project we built the Backend side as well as the Frontend side.<br>
       for this project we learned JavaScript and Vue.<br>
     </h4>
-    <img  width="50%" height="50%" src="../../sources/photous.jpeg">
+    <br>
+    <img  width="30%" height="30%" src="../../sources/photous.jpeg">
   </div>
 </template>
 
