@@ -216,8 +216,10 @@ export default {
 <style scoped>
 
 #search-input {
-  margin-left: 20px; 
+  margin: 0 auto;
+  float: none;
   width: 500px; 
+  
 }
 
 #search-input-position {
