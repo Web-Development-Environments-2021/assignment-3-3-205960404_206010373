@@ -116,9 +116,7 @@ export default {
     }
   },
   mounted() {
-    // console.log("mounted");
-    // this.countries.push(...countries);
-    // console.log($v);
+
   },
   methods: {
     validateState(param) {
@@ -127,10 +125,6 @@ export default {
     },
     async Register() {
       try {
-        console.log(this.form.MatchId);
-        console.log(this.form.homeGoals);
-        console.log(this.form.awayGoals);
-
         const response = await this.axios.put(
           "http://localhost:3000/admin/addScoretoMatch",
           {
@@ -140,20 +134,15 @@ export default {
           }
         );
         this.$root.toast("Add Game", "The score was successfully update", "success");
-        // this.$router.push("/login");
-        // console.log(response);
       } catch (err) {
-        console.log(err.response);
         this.form.submitError = err.response.data.message;
       }
     },
     onRegister() {
-      // console.log("register method called");
       this.$v.form.$touch();
       if (this.$v.form.$anyError) {
         return;
       }
-      console.log("register method go liiiad");
       this.Register();
     },
     onReset() {

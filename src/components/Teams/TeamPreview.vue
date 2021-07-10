@@ -34,7 +34,6 @@ export default {
       },
   }, 
   mounted(){
-    console.log("player preview mounted")
   } 
 };
 </script>

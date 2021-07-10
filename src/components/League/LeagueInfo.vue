@@ -9,7 +9,7 @@
         <br>
         <h5>Stage: {{ stage }}</h5>
       </div>
-      <!-- <b-button href="#" variant="primary">Go somewhere</b-button> -->
+      
     </div>
     <div>
       <br><br><br>
@@ -50,7 +50,6 @@ export default {
           const response = await this.axios.get(
             "http://localhost:3000/league/getDetails"
              );
-            console.log(response);
             this.leagueName = response.data.league_name;
             this.season = response.data.current_season_name;
             this.stage=response.data.current_stage_name;
@@ -59,7 +58,6 @@ export default {
          const response2 = await this.axios.get(
             "http://localhost:3000/matches/futureMatches"
              );
-          console.log(response2.data[0]);
           this.games = [];
           if(response2.data.length >0){
             this.games.push({
@@ -72,10 +70,7 @@ export default {
           })
           }
             }
-        catch (err) {
-          console.log(err.response);
-          console.log(err.message);
-          // this.form.submitError = err.response.data.message;
+        catch (error) {
           }
           var dv1 = document.getElementById('div1');
           var dv2 = document.getElementById('div2');
@@ -87,12 +82,12 @@ export default {
   mounted()
   {
     this.getDetails();
-    console.log("mounted liads main page");
+  
   },
   created()
   {
     this.getDetails();
-    console.log("mounted liads main page");
+   
   }
 };
 </script>

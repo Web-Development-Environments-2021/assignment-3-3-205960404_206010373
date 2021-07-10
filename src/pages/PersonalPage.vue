@@ -60,14 +60,11 @@ export default {
   methods: {
     async getPlayerDetails() {
         try {
-            console.log("PPPPPPPPPPPPPPPPPPPPP")
-            console.log(this.$route.params);
+         
             const response = await this.axios.get(
             `http://localhost:3000/players/Details/${this.$route.params.playerID}`
             );
-            console.log("lllllllllllllllllllllllllllllllllllllllllllllllllllllllll")
-            console.log(response.data);
-            console.log(response.data.playerPreview.player_id);
+            
             this.player_id = response.data.playerPreview.player_id;
             this.name = response.data.playerPreview.name;
             this.image = response.data.playerPreview.image;
@@ -81,7 +78,6 @@ export default {
             this.weight = response.data.weight;
 
         } catch (error) {
-        console.log(error.response);
         }
     },
     async addheart(){
@@ -90,33 +86,24 @@ export default {
           `http://localhost:3000/users/favoritePlayers`
         );
         const myfav = response.data;
-        console.log(myfav)
         this.items = [];
         var found = false;
-        console.log("dvir");
 
-        console.log(this.player_id);
         for(let i=0; i<myfav.length; i++){
-          console.log(myfav[i]);
           if(myfav[i].player_id == this.player_id){
               this.icon = "in";
               found = true;
-              console.log(found);
-              console.log(this.icon);
               break;
           }
         }
         if(!found){
-          console.log(found);
           this.icon = "out";
         }
        }
        catch(err){
-         console.log(err.message);
        }},
       async addPlayerFav(player_id2){
-      console.log("*******AddPlayerFav*******");
-      console.log(player_id2.toString());
+      
       try{
       const response = await this.axios.post(
           "http://localhost:3000/users/favoritePlayers",
@@ -125,12 +112,10 @@ export default {
           }
         );
         this.$root.toast("favoritePlayer", "The Player was successfully added as favorite", "success");
-        console.log(response);
-        console.log("player was added liad");
+      
     } catch (error) {
        this.$root.toast("favoritePlayer", "The Player is already in favorites", "success");
-      console.log(error.message);
-      console.log("error in addind player to fav")
+    
     }},
   
   },

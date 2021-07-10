@@ -47,12 +47,10 @@ export default {
   },
   methods: {
     async updateGames(){
-      console.log("response");
       try {
         const response = await this.axios.get(
           "http://localhost:3000/users/favoriteMatches"
         );
-        console.log(response.data);
         const games = response.data;
         this.games = [];
         let until = 3;
@@ -69,17 +67,13 @@ export default {
             stadium: games[i][0].Stadium 
           })
         };
-        //this.games.push(...games);
-        console.log(this.games);
-        console.log(response);
+       
       } catch (error) {
-        console.log("error in update games")
-        console.log(error);
+        
       }
     }
   }, 
   mounted(){
-    console.log("favorite games mounted");
     this.updateGames(); 
   }
 };

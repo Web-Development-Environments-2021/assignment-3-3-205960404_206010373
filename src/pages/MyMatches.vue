@@ -19,7 +19,6 @@ import FavoriteGames from "../components/Matches/FavoriteGames.vue";
       }
     },
   mounted(){
-    console.log("FavoriteGames mounted");
     }
 }
 </script>

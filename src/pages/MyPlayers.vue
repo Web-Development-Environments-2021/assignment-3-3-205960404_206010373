@@ -19,7 +19,6 @@ import FavoritePlayers from "../components/Players/FavoritePlayers.vue";
       }
     },
   mounted(){
-    console.log("Favorite Players mounted");
     }
 }
 </script>
