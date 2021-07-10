@@ -1,6 +1,6 @@
 
 <template>
- <div>
+ <div class="currstage">
    <div>
    <pastMatches :fields="fields"
    :items="items">
@@ -90,5 +90,14 @@ import pastMatches from "../components/Matches/pastMatches";
 </script>
 
 <style>
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #b8daff;
+    text-align: center;
+}
 
+.h1{
+  text-align: center;
+}
 </style>
