@@ -64,4 +64,8 @@ export default {
   overflow: hidden;
 }
 
+b {
+    color: #007bff;
+}
+
 </style>

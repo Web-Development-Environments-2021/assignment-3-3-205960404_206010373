@@ -110,4 +110,8 @@ export default {
     background-color: black;
     
 }
+
+b {
+    color: #007bff;
+}
 </style>
