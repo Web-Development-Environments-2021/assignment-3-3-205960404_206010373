@@ -58,13 +58,18 @@ export default {
     async delMatchFav(match_id2){
       console.log("*******delMatchFav*******");
       console.log(match_id2);
+      try{
       const response = await this.axios.delete(
           "http://localhost:3000/users/favoriteMatches",
           {
             data: {match_id: match_id2}
           }
         );
-        console.log(response);
+        this.$root.toast("favoriteGames", "The Match was successfully deleted as favorite", "success");
+        console.log(response);}
+        catch (error){
+        console.log(error);
+      }
     }
   }, 
   mounted(){

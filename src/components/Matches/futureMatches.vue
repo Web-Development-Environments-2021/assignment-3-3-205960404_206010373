@@ -80,6 +80,7 @@ export default {
             "match_id": matchID
           }
         );
+        this.$root.toast("futureGames", "The Match was successfully added as favorite", "success");
     }
   },
   mounted(){

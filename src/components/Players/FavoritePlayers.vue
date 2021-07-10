@@ -50,15 +50,30 @@ export default {
         console.log(favPlayers)
         this.items = [];
         this.items.push(...favPlayers);
-
+        // this.$root.toast("favoritePlayers", "The Player was successfully added as favorite", "success");
         console.log(response);
       } catch (error) {
-        console.log("error in update games")
+
+        console.log(error);
+      }},
+       async delPlayerFav(player_id2){
+      console.log("*******delPlayerFav*******");
+      console.log(player_id2.toString());
+      try{
+      const response = await this.axios.delete(
+          "http://localhost:3000/users/favoritePlayers",
+          {
+            data:{player_id: player_id2}
+          }
+        );
+         this.$root.toast("favoritePlayers", "The Player was successfully deleted as favorite", "success");
+        console.log(response);
+        console.log("queen")}
+      catch (error){
         console.log(error);
       }
-    },
-    
-
+    }
+  
   }, 
   mounted(){
     console.log("favorite players mounted");
