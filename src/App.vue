@@ -88,7 +88,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #a1c5e9;
   min-height: 100vh;
-  background-color:#3d4349;
+  background-color:black;
   text-align: center;
 }
 
