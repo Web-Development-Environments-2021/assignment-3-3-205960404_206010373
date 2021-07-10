@@ -22,9 +22,9 @@
         <b-form-timepicker  locale="en-US"  v-model="hour" ></b-form-timepicker>
         </b-form-group>
  
-        <b-form-group id="input-group-2" label="Stadium Name:" label-for="input-2">
+        <b-form-group id="input-group-1" label="Stadium Name:" label-for="input-1">
         <b-form-input
-          id="input-2"
+          id="input-1"
           v-model="form.stadium"
           placeholder="Enter name"
           required
@@ -43,42 +43,44 @@
       <b-form-group id="input-group-3" label="Season:" label-for="input-3">
         <b-form-select
           id="input-3"
-          v-model="form.seasonName"
+          v-model="seasonName"
           :options="seasons"
           required
+          
         ></b-form-select>
+        <!-- <div class="mt-3">Selected: <strong>{{ seasonName }}</strong></div> -->
       </b-form-group>
 
-        <b-form-group id="input-group-3" label="Stage:" label-for="input-3">
+        <b-form-group id="input-group-4" label="Stage:" label-for="input-4">
         <b-form-select
-          id="input-3"
+          id="input-4"
           v-model="form.stageName"
           :options="stages"
           required
         ></b-form-select>
       </b-form-group>
 
-      <b-form-group id="input-group-3" label="Referee Name:" label-for="input-3">
+      <b-form-group id="input-group-5" label="Referee Name:" label-for="input-5">
         <b-form-select
-          id="input-3"
+          id="input-5"
           v-model="form.refereeName"
           :options="referees"
           required
         ></b-form-select>
       </b-form-group>
 
-      <b-form-group id="input-group-2" label="Home Team Id:" label-for="input-2">
+      <b-form-group id="input-group-6" label="Home Team Id:" label-for="input-6">
         <b-form-input
-          id="input-2"
+          id="input-6"
           v-model="form.homeTeamID"
           placeholder="Enter name"
           required
         ></b-form-input>
       </b-form-group>
 
-      <b-form-group id="input-group-2" label="Away Team Id:" label-for="input-2">
+      <b-form-group id="input-group-7" label="Away Team Id:" label-for="input-7">
         <b-form-input
-          id="input-2"
+          id="input-7"
           v-model="form.awayteamID"
           placeholder="Enter name"
           required
@@ -154,18 +156,22 @@
 <script>
  export default {
     data() {
+      
       const now = new Date()
       const today = new Date(now.getFullYear(),now.getMonth(),now.getDate())
       console.log(today)
       return {
         min: today,
         form: {
+          
+          
           email: '',
           name: '',
           food: null,
           checked: []
         },
-        seasons: [{ text: 'Select One', value: null }, '2017/2018', '2018/2019', '2019/2020', '2020/2021'],
+        seasonName:null,
+        seasons: [ "2017/2018","2018/2019","2019/2020"],
         show: true,
         stages: [{ text: 'Select One', value: null }, 'Regular Season', 'Play Off'],
         referees: [{ text: 'Select One', value: null }, 'Pierluigi Collina', 'Markus Merk', 'Howard Webb','Kim Milton Nielsem','Sandor Puhl','Peter Mikkelsen','Michel Vautrot','Pedro Proenca','Oscar Ruiz','Frank de Bleeckere']
@@ -200,8 +206,11 @@
                 console.log(this.hour.slice(0,5));
                 console.log(this.form.stadium);
                 console.log(this.form.superligaName);
-                console.log(this.form.seasonName);
-                console.log(this.form.stagenName);
+                console.log(this.seasonName);
+                // console.log(this.form.stageName);
+                // console.log(this.form.refereeName);
+                console.log(this.form.homeTeamID);
+                console.log(this.form.awayteamID);
                 // let datetime=this.form.date;
                 // let datehour= this.form.time;
                 // const response=await this.axios.post(`http://localhost:3000/admin/addPreviewMatch`,{
@@ -210,7 +219,7 @@
                 //     stadium:this.form.stadium,
                 //     superligaName:this.form.superligaName,
                 //     seasonName:this.form.seasonName,
-                //     stageName:this.form.stagenName,
+                //     stageName:this.form.stageName,
                 //     refereeName:this.form.refereeName,
                 //     homeTeamID:this.form.homeTeamID,
                 //     awayTeamID:this.form.awayteamID,
