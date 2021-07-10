@@ -18,7 +18,7 @@
         Weight: {{ weight }} <br/> </h5>
         </div>
       </b-card-text>
-       <b-button @click="addPlayerFav(player_id)">Add Player To Favorites <br>
+       <b-button v-if="$root.store.username" @click="addPlayerFav(player_id)">Add Player To Favorites <br>
          <b-icon v-if="icon=='in'" icon="heart-fill" variant="info"></b-icon>
          <b-icon v-if="icon=='out'" icon="heart" variant="info"></b-icon>
        </b-button>
