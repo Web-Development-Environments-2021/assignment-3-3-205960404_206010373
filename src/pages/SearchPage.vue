@@ -136,7 +136,34 @@ export default {
 
     };
   },
+  mounted(){
+    this.searchQuery = localStorage.lastSearchQ;
+    if(localStorage.searchBy == "Players"){
+      this.showPlayers = true;
+      this.items_players =  JSON.parse(localStorage.lastSearchResult);
+      console.log(this.items_players);
+    }
+    else{
+      this.showTeam = true;
+      this.items_teams =  JSON.parse(localStorage.lastSearchResult);
+      console.log(this.items_teams);
+    }
+    //this.results = JSON.parse(localStorage.lastSearchResult);
+
+  },
   methods:{
+    updateLocalStorage(){
+      localStorage.setItem("lastSearchQ", this.searchQuery);
+      localStorage.setItem("searchBy", this.selected)
+      if(this.selected=="Players"){
+          localStorage.setItem("lastSearchResult", JSON.stringify(this.items_players));
+      }
+      else{
+          localStorage.setItem("lastSearchResult", JSON.stringify(this.items_teams));
+      }
+      
+      
+    },
     async search(){
       console.log("clickkkkkkkkkkkkkkk");
       console.log(this.selected);
@@ -204,6 +231,8 @@ export default {
           }
           }
           
+          this.updateLocalStorage();
+ 
       }
       catch{
 
