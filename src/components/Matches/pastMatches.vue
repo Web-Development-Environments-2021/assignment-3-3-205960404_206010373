@@ -24,7 +24,7 @@
         <b-card>
           <b-row class="mb-2">
             <b-col sm="3" class="text-sm-right"><b>Date:</b></b-col>
-            <b-col>{{ row.item.Date }}</b-col>
+            <b-col>{{ row.item.Date.slice(0,10) }}</b-col>
           </b-row>
           <b-row class="mb-2">
             <b-col sm="3" class="text-sm-right"><b>Hour:</b></b-col>
