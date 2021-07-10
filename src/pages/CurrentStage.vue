@@ -23,17 +23,30 @@ import pastMatches from "../components/Matches/pastMatches";
   components: { pastMatches, futureMatches },
   
     data() {
-      this.fields=  ['home_team', 'away_team', 'show_details'];
+      this.fields=  ['HomeTeamID','AwayTeamID','home_team', 'away_team', 'show_details'];
       this.items = [];
-      this.fields_future = ['home_team', 'away_team', 'show_details'];
+      this.fields_future = ['HomeTeamID','AwayTeamID','home_team', 'away_team', 'show_details'];
       this.items_future = [];
       return {
-        fields: ['home_team', 'away_team', 'show_details'],
+        fields: [{ key: 'HomeTeamID',
+          thClass: 'd-none',
+          tdClass: 'd-none'
+        },{ key: 'AwayTeamID',
+          thClass: 'd-none',
+          tdClass: 'd-none'
+        },,'home_team', 'away_team', 'show_details'],
         items: [
           {  }
         ],
 
-        fields_future: ['home_team', 'away_team', 'show_details'],
+        fields_future: [{ key: 'homeID',
+          thClass: 'd-none',
+          tdClass: 'd-none'
+        },{ key: 'awayID',
+          thClass: 'd-none',
+          tdClass: 'd-none'
+        },
+        'home_team', 'away_team', 'show_details'],
         items_future: [
           {  }
         ]

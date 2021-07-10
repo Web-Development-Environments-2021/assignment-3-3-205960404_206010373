@@ -5,10 +5,10 @@
         <b-table striped hover :items="items" :fields="fields">
           <template v-slot:cell(home_team)="data">
             
-      <router-link :to="`/teams/teamFullDetails/{data.value}`">{{ data.value }}</router-link>
+      <router-link :to="{ name: 'TeamPage', params: { teamID: data.item.HomeTeamID } }">{{ data.value }}</router-link>
     </template>
     <template v-slot:cell(away_team)="data">
-      <router-link :to="`/teams/teamFullDetails/{data.value}`">{{ data.value }}</router-link>
+       <router-link :to="{ name: 'TeamPage', params: { teamID:  data.item.AwayTeamID } }">{{ data.value }}</router-link>
     </template>
 
 
