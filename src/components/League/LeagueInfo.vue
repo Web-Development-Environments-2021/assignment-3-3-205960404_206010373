@@ -87,7 +87,7 @@ export default {
           this.games = [];
           if(response2.data.length >0){
             this.games.push({
-            id : response2.data[0].MatchId,
+            id : response2.data[0].MatchID,
             hostTeam: response2.data[0].home_team ,
             guestTeam: response2.data[0].away_team,
             date: response2.data[0].Date.slice(0,10) ,
