@@ -16,7 +16,7 @@
         <b-button size="sm" @click="row.toggleDetails" class="mr-2">
           {{ row.detailsShowing ? 'Hide' : 'Show'}} Details
         </b-button>
-        <b-button @click="addMatchFav(row.item.MatchID)">Add Match to Favorites</b-button>
+        <b-button v-if="$root.store.username" @click="addMatchFav(row.item.MatchID)">Add Match to Favorites</b-button>
       </template>
 
       <template #row-details="row">
