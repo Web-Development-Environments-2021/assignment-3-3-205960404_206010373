@@ -55,8 +55,6 @@ export default {
   }, 
   methods: {
      async addPlayerFav(player_id2){
-      console.log("*******AddPlayerFav*******");
-      console.log(player_id2.toString());
       try{
       const response = await this.axios.post(
           "http://localhost:3000/users/favoritePlayers",
@@ -65,16 +63,14 @@ export default {
           }
         );
         this.$root.toast("favoritePlayer", "The Player was successfully added as favorite", "success");
-        console.log(response);
-        console.log("player was added liad");
+       
     } catch (error) {
-      console.log(error.message);
-      console.log("error in addind player to fav")
+     
     }},
 
   },
   mounted(){
-    console.log("player preview mounted")
+    
   } 
 };
 </script>

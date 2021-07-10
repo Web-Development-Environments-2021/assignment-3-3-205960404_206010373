@@ -272,9 +272,7 @@ export default {
     }
   },
   mounted() {
-    // console.log("mounted");
     this.countries.push(...countries);
-    // console.log($v);
   },
   methods: {
     validateState(param) {
@@ -298,9 +296,7 @@ export default {
         );
         this.$root.toast("Register", "User was Registerd successfully", "success");
         this.$router.push("/login");
-        // console.log(response);
       } catch (err) {
-        console.log(err.response);
         this.form.submitError = err.response.data.message;
         this.$root.toast("Register", "There was a problem with your Register, Try a diffrent user Name", "fail");
       }
@@ -311,7 +307,6 @@ export default {
       if (this.$v.form.$anyError) {
         return;
       }
-      console.log("register method go liiiad");
       this.Register();
     },
     onReset() {

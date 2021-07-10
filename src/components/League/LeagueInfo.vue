@@ -9,7 +9,7 @@
         <br>
         <h5>Stage: {{ stage }}</h5>
       </div>
-      <!-- <b-button href="#" variant="primary">Go somewhere</b-button> -->
+      
     </div>
     <div>
       <br><br><br>
@@ -44,37 +44,12 @@ export default {
   components: {
     GamePreview
   }, 
-  // props:{
-  //     leagueName:{
-  //       Type: String,
-  //       required: true
-  //     },
-  //     season:{
-  //       Type: String,
-  //       required: true
-  //     },
-  //     stage:{
-  //       Type: String,
-  //       required: true
-  //     },
-  //     games:{
-  //       Type: Array,
-  //       required: true
-  //     }
-
-
-  // },
   methods:{
     async getDetails(){
-      // var dv1 = document.getElementById('div1');
-      // var dv2 = document.getElementById('div2');
-      // dv2.style.display = 'none';
-      // dv1.style.display = 'block';
         try {
           const response = await this.axios.get(
             "http://localhost:3000/league/getDetails"
              );
-            console.log(response);
             this.leagueName = response.data.league_name;
             this.season = response.data.current_season_name;
             this.stage=response.data.current_stage_name;
@@ -83,7 +58,6 @@ export default {
          const response2 = await this.axios.get(
             "http://localhost:3000/matches/futureMatches"
              );
-          console.log(response2.data[0]);
           this.games = [];
           if(response2.data.length >0){
             this.games.push({
@@ -95,15 +69,8 @@ export default {
             stadium: response2.data[0].Stadium 
           })
           }
-
             }
-
-          
-        
-        catch (err) {
-          console.log(err.response);
-          console.log(err.message);
-          // this.form.submitError = err.response.data.message;
+        catch (error) {
           }
           var dv1 = document.getElementById('div1');
           var dv2 = document.getElementById('div2');
@@ -111,25 +78,19 @@ export default {
           dv2.style.display = 'block';
         
         }
-        
       },
   mounted()
   {
     this.getDetails();
-    console.log("mounted liads main page");
+  
   },
   created()
   {
-    
     this.getDetails();
-    console.log("mounted liads main page");
+   
   }
-
 };
-
 </script>
-
-
 
 <style>
 .league-preview {
@@ -169,8 +130,5 @@ h5 {
   margin-top: 20px;
   margin-left: 40px;
 }
-
-
-
 
 </style>

@@ -142,10 +142,6 @@
           type="number"
           :state="validateState('awayteamID')"
         ></b-form-input>
-        <!-- <b-form-invalid-feedback v-if="!$v.form.awayteamID.required">
-          last Name is required
-        </b-form-invalid-feedback> -->
-        
       </b-form-group>
 
 
@@ -155,8 +151,7 @@
         variant="primary"
         style="width:250px;"
         class="ml-5 w-75"
-        >Add Game</b-button
-      >
+        >Add Game</b-button>
      
     </b-form>
     <b-alert
@@ -196,8 +191,6 @@ export default {
         refereeName: null,
         homeTeamID: "",
         awayTeamID: "",
-
-        //submitError: undefined
       },
       seasons: [{ value: null, text: "Select One", disabled: true }, {value:"2020/2021",text:"2020/2021"},{value:"2021/2022",text:"2021/2022"},{value:"2022/2023",text:"2022/2023"}],
       stages: [{ value: null, text: "Select One", disabled: true }, {value:"Regular Season",text:"Regular Season"},{value:"Play Off",text:"Play Off"}],
@@ -235,9 +228,7 @@ export default {
     }
   },
   mounted() {
-    // console.log("mounted");
-    // this.countries.push(...countries);
-    // console.log($v);
+ 
   },
   methods: {
     validateState(param) {
@@ -246,16 +237,7 @@ export default {
     },
     async Register() {
       try {
-        console.log(this.date);
-                console.log(this.hour.slice(0,5));
-        console.log(this.form.stadium);
-        console.log(this.form.superligaName);
-        console.log(this.form.seasonName);
-        console.log(this.form.stageName);
-        console.log(this.form.refereeName);
-        console.log(this.form.homeTeamID);
-        console.log(this.form.awayteamID);
-
+    
         const response = await this.axios.post(
           "http://localhost:3000/admin/addPreviewMatch",
           {
@@ -271,20 +253,17 @@ export default {
           }
         );
         this.$root.toast("Add Game", "The Match was successfully added", "success");
-        // this.$router.push("/login");
-        // console.log(response);
       } catch (err) {
-        console.log(err.response);
         this.form.submitError = err.response.data.message;
       }
     },
     onRegister() {
-      // console.log("register method called");
+    
       this.$v.form.$touch();
       if (this.$v.form.$anyError) {
         return;
       }
-      console.log("register method go liiiad");
+     
       this.Register();
     },
     onReset() {

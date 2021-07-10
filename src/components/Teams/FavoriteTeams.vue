@@ -37,28 +37,19 @@ export default {
   }, 
   methods: {
     async FavoritePlayers(){
-      console.log("response liiiiiiiiiiiiad");
       try {
         const response = await this.axios.get(
           "http://localhost:3000/users/favoriteTeams"
         );
         this.fields = [ "logo","team_id","teamName","button"];
-        console.log("im here teams nowww");
-        console.log(response);
         const favTeams = response.data;
-        console.log(favTeams)
         this.items = [];
         this.items.push(...favTeams);
-        // this.$root.toast("favoriteTeams", "The Team was successfully added as favorite", "success");
-        console.log(response);
       } catch (error) {
-        console.log("error in favTeams")
-        console.log(error);
+        
       }
     },
     async delTeamFav(team_id2){
-      console.log("*******delTeamFav*******");
-      console.log(team_id2.toString());
       try{
       const response = await this.axios.delete(
           "http://localhost:3000/users/favoriteTeams",
@@ -66,16 +57,12 @@ export default {
             data:{team_id: team_id2}
           }
         );
-        this.$root.toast("favoriteTeams", "The Team was successfully deleted as favorite", "success");
-        console.log(response);
-        console.log("queen")}
+        this.$root.toast("favoriteTeams", "The Team was successfully deleted as favorite", "success");}
       catch (error){
-        console.log(error);
       }
     }
   },
   mounted(){
-    console.log("favorite players mounted");
     this.FavoritePlayers(); 
   }
 };

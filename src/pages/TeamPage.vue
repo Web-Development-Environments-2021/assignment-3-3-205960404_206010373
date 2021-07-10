@@ -124,15 +124,11 @@ export default {
   methods: {
     async getTeamDetails() {
       try {
-        console.log(this.$route.params);
         const response = await this.axios.get(
           `http://localhost:3000/teams/teamFullDetails/${this.$route.params.teamID}`
         );
-        console.log(response);
         this.players = response.data.players;
-       // this.coach = response.data.coach;
         const past_matches = response.data.pastMatches;
-        console.log(past_matches)
         this.past_items = [];
         this.past_items.push(...past_matches);
         const future_matches = response.data.futureMatches;
@@ -145,7 +141,6 @@ export default {
         this.start = false;
 
       } catch (err) {
-        console.log(err.message);
         this.teamFound = false;
         this.start = false;
       }

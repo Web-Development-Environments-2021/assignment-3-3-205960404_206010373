@@ -19,7 +19,6 @@ import FavoriteTeams from "../components/Teams/FavoriteTeams.vue";
       }
     },
   mounted(){
-    console.log("Favorite Teams mounted");
     }
 }
 </script>

@@ -61,14 +61,11 @@ export default {
       this.$root.store.logout();
       this.$root.toast("Logout", "User logged out successfully", "success");
       try{
-        console.log("logout");
           const response = await axios.post(
             "http://localhost:3000/logout"); 
-             console.log(response); 
       }
       
       catch (err){
-        console.log(response);
       }
       axios.defaults.withCredentials = false;
       this.$router.push("/").catch(() => {

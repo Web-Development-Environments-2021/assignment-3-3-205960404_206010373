@@ -54,25 +54,6 @@ export default {
       }
   }, 
    methods:{
-    //   async importFutureMatches(){
-    //   try {
-
-    //     const response2 = await this.axios.get(
-    //       "http://localhost:3000/matches/futureMatches",
-    //     );
-    //     const games2 = response2.data;
-    //     console.log(games2);
-    //     this.items = [];
-    //     this.items.push(...games2);
-       
-
-     
-      
-    //   } catch (error) {
-    //     console.log("error in update games")
-    //     console.log(error);
-    //   }
-    // },
     async addMatchFav(matchID){
       const response = await this.axios.post(
           "http://localhost:3000/users/favoriteMatches",
@@ -84,9 +65,6 @@ export default {
     }
   },
   mounted(){
-    console.log("future matches mounted");
-    // this.importFutureMatches(); 
-
   } 
 };
 </script>

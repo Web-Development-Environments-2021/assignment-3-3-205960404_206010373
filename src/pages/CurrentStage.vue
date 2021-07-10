@@ -60,38 +60,29 @@ import pastMatches from "../components/Matches/pastMatches";
           "http://localhost:3000/matches/futureMatches",
         );
         const games2 = response2.data;
-        console.log(games2);
         this.items_future = [];
         this.items_future.push(...games2);
-       
-
-     
-      
       } catch (error) {
-        console.log("error in update games")
-        console.log(error);
+       
       }
     },
       async importPastMatches(){
-      console.log("importPastMaatches");
+      
       try {
         const response = await this.axios.get(
           "http://localhost:3000/matches/pastMatches",
         );
         const games = response.data;
-        console.log(games);
+        
         this.items = [];
         this.items.push(...games);     
       
       } catch (error) {
-        console.log("error in update games")
-        console.log(error);
       }
     }
 
   },
   mounted(){
-    console.log("Past Games mounted");
     this.importPastMatches(); 
     this.importFutureMatches();
 

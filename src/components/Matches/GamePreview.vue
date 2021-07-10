@@ -45,7 +45,6 @@ export default {
       }
   }, 
   mounted(){
-    console.log("game preview mounted")
   } 
 };
 </script>
@@ -54,7 +53,7 @@ export default {
 .game-preview {
   display: inline-block;
   width: 250px;
-  height: 200px;
+  height: 170px;
   position: relative;
   border-style: solid;
   border-radius: 10px;
@@ -73,6 +72,9 @@ export default {
 .game-preview .game-content {
   width: 100%;
   overflow: hidden;
+}
+b {
+    color: blue;
 }
 
 
