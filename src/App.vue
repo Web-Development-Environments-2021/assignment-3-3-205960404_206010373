@@ -86,8 +86,10 @@ export default {
   // font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #add2f7;
+  color: #a1c5e9;
   min-height: 100vh;
+  background-color:#3d4349;
+  text-align: center;
 }
 
 #nav {
