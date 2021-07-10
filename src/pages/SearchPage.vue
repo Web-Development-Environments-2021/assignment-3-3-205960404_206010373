@@ -137,6 +137,7 @@ export default {
     };
   },
   mounted(){
+    console.log(this.$root.store);
     this.searchQuery = localStorage.lastSearchQ;
     if(localStorage.searchBy == "Players"){
       this.showPlayers = true;
