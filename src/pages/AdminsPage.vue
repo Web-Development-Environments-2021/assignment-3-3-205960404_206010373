@@ -27,102 +27,16 @@
             
           </UpdateScore>
          </b-collapse>
-      <!-- 
-       <b-form @submit.prevent="onAddScore" @reset.prevent="onResetScore">
       
-        <b-form-group
-        id="input-group-homeTeamID"
-        label-cols-sm="3"
-        label="home Team ID:"
-        label-for="homeTeamID"
-      >
-        <b-form-input
-          id="homeTeamID"
-          v-model="$v.form.homeTeamID.$model"
-          type="text"
-          :state="validateState('homeTeamID')"
-        ></b-form-input>
-        <b-form-invalid-feedback v-if="!$v.form.homeTeamID.required">
-          last Name is required
-        </b-form-invalid-feedback>
-      </b-form-group>
-
       
-      <b-form-group
-        id="input-group-awayteamID"
-        label-cols-sm="3"
-        label="away Team ID:"
-        label-for="awayteamID"
-      >
-        <b-form-input
-          id="awayteamID"
-          v-model="$v.form.awayteamID.$model"
-          type="text"
-          :state="validateState('awayteamID')"
-        ></b-form-input>
-        <! <b-form-invalid-feedback v-if="!$v.form.awayteamID.required">
-          last Name is required
-        </b-form-invalid-feedback> -->
-        
-      <!-- </b-form-group>
-      
-      <b-button type="reset" variant="danger">Reset</b-button>
-      <b-button
-        type="submit"
-        variant="primary"
-        style="width:250px;"
-        class="ml-5 w-75"
-        >Add Score</b-button
-      >
-       </b-form>
-
-      </b-collapse> --> 
-      <!-- 
       <br><br>
       <b-button v-b-toggle.collapse-3 variant="primary"
         >Add event to a game</b-button>
       <b-collapse id="collapse-3" class="mt-2">
-        <b-card>
-          <div class="card-text">
-            <br>
-            <h6>Fill the following parameters to add event to a game</h6>
-            <br><br>
-            Choose game from the list above:
-            dvir bring future games 
-            take id  -->
-            <!-- <br><br>
-            Select minute in game
-            <select v-model="minute">
-              <option disabled value="">select minute in game </option>
-              <option>1</option
-              ><option>2</option>
-              <option>3</option
-              ><option>4</option>
-              <option>5</option
-              ><option>6</option>
-            </select>
-            <br><br>
-            Choose Type of event
-            <select v-model="event">
-              <option disabled value="">select event</option>
-              <option>Goal</option
-              ><option>Offside</option>
-              <option>Foul</option
-              ><option>Redcard</option>
-              <option>Yellowcard</option
-              ><option>Injury</option
-              ><option>Subtitution</option>
-            </select>
-            <br><br>
-           
-              <label for="fname">Players Name: </label>
-              <input type="text" id="fname" name="fname"><br><br>
-           
-            <br><br>
-            <button v-on:click="submit_add_event">submit</button>
-          </div>
-        </b-card>
-      </b-collapse> -->
+       <AddToEventCalander>
+         
+       </AddToEventCalander>
+      </b-collapse> 
     </div>
   </div>
 </template>
@@ -130,10 +44,13 @@
 <script>
 import AddMatch from "../components/Admin/AddMatch";
 import UpdateScore from "../components/Admin/UpdateScore";
+import AddToEventCalander from "../components/Admin/AddToEventCalander";
+
 export default {
   components: {
     AddMatch,
-    UpdateScore
+    UpdateScore,
+    AddToEventCalander
   }
 }
 //  export default {
