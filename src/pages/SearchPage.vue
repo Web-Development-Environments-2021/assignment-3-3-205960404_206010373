@@ -159,6 +159,7 @@ export default {
   },
   methods:{
     updateLocalStorage(){
+      if(this.$root.store.username != undefined){
       this.$root.store.search.lastSearchQ = this.searchQuery;
       this.$root.store.search.searchBy = this.selected;
       if(this.selected=="Players"){
@@ -167,7 +168,7 @@ export default {
       else{
         this.$root.store.search.lastSearchResult = this.items_teams;
       }
-      
+      }
       
     },
     async search(){
