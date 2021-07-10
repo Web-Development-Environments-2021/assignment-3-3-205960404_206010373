@@ -6,11 +6,14 @@
       <template #cell(button)="row"> 
         <b-button @click="delMatchFav(row.item.MatchId)">Remove Match From Favorites</b-button>
       </template>
-      <template v-slot:cell(HomeTeamID)="data">
-      <router-link :to="{ name: 'TeamPage', params: {HomeTeamID: data.value } }">{{ data.value }}</router-link>
+      <template v-slot:cell(home_team)="data">
+      <router-link :to="{ name: 'TeamPage', params: {HomeTeamID: data.item.HomeTeamID } }">{{ data.value }}</router-link>
     </template>
-     <template v-slot:cell(AwayTeamID)="data">
-      <router-link :to="{ name: 'TeamPage', params: {AwayTeamID: data.value } }">{{ data.value }}</router-link>
+     <template v-slot:cell(away_team)="data">
+      <router-link :to="{ name: 'TeamPage', params: {AwayTeamID: data.item.AwayTeamID } }">{{ data.value }}</router-link>
+    </template>
+    <template v-slot:cell(Date)="data">
+      {{ data.value.slice(0,10) }}
     </template>
     </b-table>
   </div>

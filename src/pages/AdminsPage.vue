@@ -12,91 +12,181 @@
         Add game to the league</b-button>
       <b-collapse id="collapse-1" class="mt-2">
         <div>
-    <b-form @submit="addGame" @reset="onReset" v-if="show">
-
-        <b-form-group label="Date Of The Match" label-for="dateInput">
-              <b-form-datepicker :min="min" id="dateInput" locale="en-US" class="mb-2" v-model="date"></b-form-datepicker>
+    <b-form @submit.prevent="onRegister" @reset.prevent="onReset">
+      <b-form-group id="input-group-date"
+        label-cols-sm="3"
+        label="Enter date:"
+        label-for="date">
+              <b-form-datepicker :min="min" id="date" locale="en-US" class="mb-2" v-model="date"></b-form-datepicker>
               </b-form-group>
               
-        <b-form-group label="Time Of The Game" label-for="timeInput">
-        <b-form-timepicker  locale="en-US"  v-model="hour" ></b-form-timepicker>
+        <b-form-group   id="input-group-hour"
+        label-cols-sm="3"
+        label="Enter hour:"
+        label-for="hour">
+        <b-form-timepicker id="hour" locale="en-US"  v-model="hour" ></b-form-timepicker>
         </b-form-group>
- 
-        <b-form-group id="input-group-1" label="Stadium Name:" label-for="input-1">
+
+      <b-form-group
+        id="input-group-stadium"
+        label-cols-sm="3"
+        label="Enter stadium name:"
+        label-for="stadium"
+      >
         <b-form-input
-          id="input-1"
-          v-model="form.stadium"
-          placeholder="Enter name"
-          required
+          id="stadium"
+          v-model="$v.form.stadium.$model"
+          type="text"
+          :state="validateState('stadium')"
         ></b-form-input>
+        <b-form-invalid-feedback v-if="!$v.form.stadium.required">
+          stadium is required
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-else-if="!$v.form.stadium.length">
+          stadium length should be between 3-8 characters long
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-if="!$v.form.stadium.alpha">
+          stadium alpha
+        </b-form-invalid-feedback>
       </b-form-group>
 
-      <b-form-group id="input-group-2" label="SuperLigaName:" label-for="input-2">
+       <b-form-group
+        id="input-group-superligaName"
+        label-cols-sm="3"
+        label="superliga Name:"
+        label-for="superligaName"
+      >
         <b-form-input
-          id="input-2"
-          v-model="form.superligaName"
-          placeholder="Enter name"
-          required
+          id="superligaName"
+          v-model="$v.form.superligaName.$model"
+          type="text"
+          :state="validateState('superligaName')"
         ></b-form-input>
+        <b-form-invalid-feedback v-if="!$v.form.superligaName.required">
+          first Name is required
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-if="!$v.form.superligaName.alpha">
+          first Name alpha
+        </b-form-invalid-feedback>
       </b-form-group>
 
-      <b-form-group id="input-group-3" label="Season:" label-for="input-3">
+      <b-form-group
+        id="input-group-seasonName"
+        label-cols-sm="3"
+        label="Season Name:"
+        label-for="seasonName"
+      >
         <b-form-select
-          id="input-3"
-          v-model="seasonName"
+          id="seasonName"
+          v-model="$v.form.seasonName.$model"
           :options="seasons"
-          required
-          
+          :state="validateState('seasonName')"
         ></b-form-select>
-        <!-- <div class="mt-3">Selected: <strong>{{ seasonName }}</strong></div> -->
+        <b-form-invalid-feedback>
+          seasonName is required
+        </b-form-invalid-feedback>
       </b-form-group>
 
-        <b-form-group id="input-group-4" label="Stage:" label-for="input-4">
+
+      <b-form-group
+        id="input-group-stageName"
+        label-cols-sm="3"
+        label="Stage Name:"
+        label-for="stageName"
+      >
         <b-form-select
-          id="input-4"
-          v-model="form.stageName"
+          id="stageName"
+          v-model="$v.form.stageName.$model"
           :options="stages"
-          required
+          :state="validateState('stageName')"
         ></b-form-select>
+        <b-form-invalid-feedback>
+          stageName is required
+        </b-form-invalid-feedback>
       </b-form-group>
 
-      <b-form-group id="input-group-5" label="Referee Name:" label-for="input-5">
+
+      <b-form-group
+        id="input-group-refereeName"
+        label-cols-sm="3"
+        label="Referee Name:"
+        label-for="refereeName"
+      >
         <b-form-select
-          id="input-5"
-          v-model="form.refereeName"
+          id="refereeName"
+          v-model="$v.form.refereeName.$model"
           :options="referees"
-          required
+          :state="validateState('refereeName')"
         ></b-form-select>
+        <b-form-invalid-feedback>
+          refereeName is required
+        </b-form-invalid-feedback>
       </b-form-group>
 
-      <b-form-group id="input-group-6" label="Home Team Id:" label-for="input-6">
+
+      <b-form-group
+        id="input-group-homeTeamID"
+        label-cols-sm="3"
+        label="home Team ID:"
+        label-for="homeTeamID"
+      >
         <b-form-input
-          id="input-6"
-          v-model="form.homeTeamID"
-          placeholder="Enter name"
-          required
+          id="homeTeamID"
+          v-model="$v.form.homeTeamID.$model"
+          type="text"
+          :state="validateState('homeTeamID')"
         ></b-form-input>
+        <b-form-invalid-feedback v-if="!$v.form.homeTeamID.required">
+          last Name is required
+        </b-form-invalid-feedback>
       </b-form-group>
 
-      <b-form-group id="input-group-7" label="Away Team Id:" label-for="input-7">
+      
+      <b-form-group
+        id="input-group-awayteamID"
+        label-cols-sm="3"
+        label="away Team ID:"
+        label-for="awayteamID"
+      >
         <b-form-input
-          id="input-7"
-          v-model="form.awayteamID"
-          placeholder="Enter name"
-          required
+          id="awayteamID"
+          v-model="$v.form.awayteamID.$model"
+          type="text"
+          :state="validateState('awayteamID')"
         ></b-form-input>
+        <!-- <b-form-invalid-feedback v-if="!$v.form.awayteamID.required">
+          last Name is required
+        </b-form-invalid-feedback> -->
+        
       </b-form-group>
 
 
-
-      <b-button type="submit" variant="primary" >Submit</b-button>
-      <!-- <b-button type="reset" variant="danger">Reset</b-button> -->
+      <b-button type="reset" variant="danger">Reset</b-button>
+      <b-button
+        type="submit"
+        variant="primary"
+        style="width:250px;"
+        class="ml-5 w-75"
+        >Add Game</b-button
+      >
+      <div class="mt-2">
+        You have an account already?
+        <router-link to="login"> Log in here</router-link>
+      </div>
     </b-form>
-
+    <b-alert
+      class="mt-2"
+      v-if="form.submitError"
+      variant="warning"
+      dismissible
+      show
+    >
+      Register failed: {{ form.submitError }}
+    </b-alert>
   </div>
       </b-collapse>
       <br><br>
-
+<!-- 
       <b-button v-b-toggle.collapse-2 variant="primary"
         >Update a score of a previous game</b-button>
       <b-collapse id="collapse-2" class="mt-2">
@@ -114,9 +204,9 @@
             <h6>Fill the following parameters to add event to a game</h6>
             <br><br>
             Choose game from the list above:
-            <!-- dvir bring future games 
+            dvir bring future games 
             take id  -->
-            <br><br>
+            <!-- <br><br>
             Select minute in game
             <select v-model="minute">
               <option disabled value="">select minute in game </option>
@@ -148,101 +238,236 @@
             <button v-on:click="submit_add_event">submit</button>
           </div>
         </b-card>
-      </b-collapse>
+      </b-collapse> -->
     </div>
   </div>
 </template>
 
 <script>
- export default {
-    data() {
-      
-      const now = new Date()
+import {
+  required,
+  minLength,
+  maxLength,
+  alpha,
+  sameAs,
+  email
+} from "vuelidate/lib/validators";
+export default {
+  name: "Register",
+  data() {
+    const now = new Date()
       const today = new Date(now.getFullYear(),now.getMonth(),now.getDate())
-      console.log(today)
-      return {
-        min: today,
-        form: {
-          
-          
-          email: '',
-          name: '',
-          food: null,
-          checked: []
-        },
-        seasonName:null,
-        seasons: [ "2017/2018","2018/2019","2019/2020"],
-        show: true,
-        stages: [{ text: 'Select One', value: null }, 'Regular Season', 'Play Off'],
-        referees: [{ text: 'Select One', value: null }, 'Pierluigi Collina', 'Markus Merk', 'Howard Webb','Kim Milton Nielsem','Sandor Puhl','Peter Mikkelsen','Michel Vautrot','Pedro Proenca','Oscar Ruiz','Frank de Bleeckere']
+    return {
+      min: today,
+      date:"",
+      hour:"",
+      form: {
+        stadium: "",
+        superligaName: "",
+        seasonName: null,
+        stageName : null,
+        refereeName: null,
+        homeTeamID: "",
+        awayTeamID: "",
+
+        //submitError: undefined
+      },
+      seasons: [{ value: null, text: "", disabled: true }, {value:"2019/2020",text:"2019/2020"},{value:"2020/2021",text:"2020/2021"},{value:"2021/2022",text:"2021/2022"}],
+      stages: [{ value: null, text: "", disabled: true }, {value:"Regular Season",text:"Regular Season"},{value:"Play Off",text:"Play Off"}],
+      referees: [{ text: 'Select One', value: null,disabled: true }, 'Pierluigi Collina', 'Markus Merk', 'Howard Webb','Kim Milton Nielsem','Sandor Puhl','Peter Mikkelsen','Michel Vautrot','Pedro Proenca','Oscar Ruiz','Frank de Bleeckere'],
+      errors: [],
+      validated: false
+    };
+  },
+  validations: {
+    form: {
+      stadium: {
+        required,
+        alpha
+      },
+      superligaName: {
+        required,
+        alpha
+    },
+      seasonName: {
+        required,
         
-        
+      },
+      stageName: {
+        required
+      },
+      refereeName: {
+        required,
+      },
+       homeTeamID: {
+        required,
+      },
+      awayteamID: {
+        required
+      }
+    }
+  },
+  mounted() {
+    // console.log("mounted");
+    // this.countries.push(...countries);
+    // console.log($v);
+  },
+  methods: {
+    validateState(param) {
+      const { $dirty, $error } = this.$v.form[param];
+      return $dirty ? !$error : null;
+    },
+    async Register() {
+      try {
+        console.log(this.date);
+                console.log(this.hour.slice(0,5));
+        console.log(this.form.stadium);
+        console.log(this.form.superligaName);
+        console.log(this.form.seasonName);
+        console.log(this.form.stageName);
+        console.log(this.form.refereeName);
+        console.log(this.form.homeTeamID);
+        console.log(this.form.awayteamID);
+
+        const response = await this.axios.post(
+          "http://localhost:3000/admin/addPreviewMatch",
+          {
+            date: this.date,
+            hour: this.hour.slice(0,5),
+            stadium: this.form.stadium,
+            superligaName: this.form.superligaName,
+            seasonName: this.form.seasonName,
+            stageName: this.form.stageName,
+            refereeName: this.form.refereeName,
+            homeTeamID: this.form.homeTeamID,
+            awayTeamID: this.form.awayteamID
+          }
+        );
+        // this.$router.push("/login");
+        // console.log(response);
+      } catch (err) {
+        console.log(err.response);
+        this.form.submitError = err.response.data.message;
       }
     },
-    methods: {
-      onSubmit(event) {
-        event.preventDefault()
-        alert(JSON.stringify(this.form))
-      },
-      onReset(event) {
-        event.preventDefault()
-        // Reset our form values
-        this.form.email = ''
-        this.form.name = ''
-        this.form.food = null
-        this.form.checked = []
-        // Trick to reset/clear native browser form validation state
-        this.show = false
-        this.$nextTick(() => {
-          this.show = true
-        })
-      },
-       async addGame(){
-            try{
-                // this.processing=true;
-                // this.form.success=undefined;
-                // this.form.errorMessage=undefined;
-                console.log(this.date);
-                console.log(this.hour.slice(0,5));
-                console.log(this.form.stadium);
-                console.log(this.form.superligaName);
-                console.log(this.seasonName);
-                // console.log(this.form.stageName);
-                // console.log(this.form.refereeName);
-                console.log(this.form.homeTeamID);
-                console.log(this.form.awayteamID);
-                // let datetime=this.form.date;
-                // let datehour= this.form.time;
-                // const response=await this.axios.post(`http://localhost:3000/admin/addPreviewMatch`,{
-                //     date:this.form.date,
-                //     hour:this.form.hour,
-                //     stadium:this.form.stadium,
-                //     superligaName:this.form.superligaName,
-                //     seasonName:this.form.seasonName,
-                //     stageName:this.form.stageName,
-                //     refereeName:this.form.refereeName,
-                //     homeTeamID:this.form.homeTeamID,
-                //     awayTeamID:this.form.awayteamID,
-                 
-                // });
-                if(response.status==201){//if game was added successfully
-                      this.form.success="Game was successfully added!";  
-                }
-                else if(response.status==409){
-                    this.form.errorMessage="Game was already added to the system";
-                }
-                else if(response.status==400){
-                    this.form.errorMessage="Bad teams names";
-                }
-                this.processing=false;
-            }
-            catch(error){
-                this.form.errorMessage=error.response.data;
-                this.processing=false;
-            }
-        },
+    onRegister() {
+      // console.log("register method called");
+      this.$v.form.$touch();
+      if (this.$v.form.$anyError) {
+        return;
+      }
+      console.log("register method go liiiad");
+      this.Register();
+    },
+    onReset() {
+      this.form = {
+        date: "",
+        hour: "",
+        stadium: "",
+        superligaName: "",
+        seasonName: null,
+        stageName: null,
+        refereeName: null,
+        homeTeamID: "",
+        awayteamID: ""
+
+      };
+      this.$nextTick(() => {
+        this.$v.$reset();
+      });
     }
   }
+};
+
+//  export default {
+//     data() {
+      
+//       const now = new Date()
+//       const today = new Date(now.getFullYear(),now.getMonth(),now.getDate())
+//       console.log(today)
+//       return {
+//         min: today,
+//         form: {
+          
+          
+//           email: '',
+//           name: '',
+//           food: null,
+//           checked: []
+//         },
+//         seasonName:null,
+//         seasons: [ "2017/2018","2018/2019","2019/2020"],
+//         show: true,
+//         stages: [{ text: 'Select One', value: null }, 'Regular Season', 'Play Off'],
+//         referees: [{ text: 'Select One', value: null }, 'Pierluigi Collina', 'Markus Merk', 'Howard Webb','Kim Milton Nielsem','Sandor Puhl','Peter Mikkelsen','Michel Vautrot','Pedro Proenca','Oscar Ruiz','Frank de Bleeckere']
+        
+        
+//       }
+//     },
+//     methods: {
+//       onSubmit(event) {
+//         event.preventDefault()
+//         alert(JSON.stringify(this.form))
+//       },
+//       onReset(event) {
+//         event.preventDefault()
+//         // Reset our form values
+//         this.form.email = ''
+//         this.form.name = ''
+//         this.form.food = null
+//         this.form.checked = []
+//         // Trick to reset/clear native browser form validation state
+//         this.show = false
+//         this.$nextTick(() => {
+//           this.show = true
+//         })
+//       },
+//        async addGame(){
+//             try{
+//                 // this.processing=true;
+//                 // this.form.success=undefined;
+//                 // this.form.errorMessage=undefined;
+//                 console.log(this.date);
+//                 console.log(this.hour.slice(0,5));
+//                 console.log(this.form.stadium);
+//                 console.log(this.form.superligaName);
+//                 console.log(this.seasonName);
+//                 // console.log(this.form.stageName);
+//                 // console.log(this.form.refereeName);
+//                 console.log(this.form.homeTeamID);
+//                 console.log(this.form.awayteamID);
+//                 // let datetime=this.form.date;
+//                 // let datehour= this.form.time;
+//                 // const response=await this.axios.post(`http://localhost:3000/admin/addPreviewMatch`,{
+//                 //     date:this.form.date,
+//                 //     hour:this.form.hour,
+//                 //     stadium:this.form.stadium,
+//                 //     superligaName:this.form.superligaName,
+//                 //     seasonName:this.form.seasonName,
+//                 //     stageName:this.form.stageName,
+//                 //     refereeName:this.form.refereeName,
+//                 //     homeTeamID:this.form.homeTeamID,
+//                 //     awayTeamID:this.form.awayteamID,
+                 
+//                 // });
+//                 if(response.status==201){//if game was added successfully
+//                       this.form.success="Game was successfully added!";  
+//                 }
+//                 else if(response.status==409){
+//                     this.form.errorMessage="Game was already added to the system";
+//                 }
+//                 else if(response.status==400){
+//                     this.form.errorMessage="Bad teams names";
+//                 }
+//                 this.processing=false;
+//             }
+//             catch(error){
+//                 this.form.errorMessage=error.response.data;
+//                 this.processing=false;
+//             }
+//         },
+//     }
+//   }
 // export default {
 //   data() {
 //     this.getfutureGames();

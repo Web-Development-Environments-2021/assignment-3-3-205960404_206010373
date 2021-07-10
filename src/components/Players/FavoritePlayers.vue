@@ -3,9 +3,10 @@
  <div>
      <h1>Your Favorite Players are:</h1>
     <b-table striped hover :fields="fields" :items="items">
-      <template v-slot:cell(player_id)="data">
-      <router-link :to="{ name: 'PersonalPage', params: {playerID: data.value } }">{{ data.value }}</router-link>
+      <template v-slot:cell(name)="data">
+      <router-link :to="{ name: 'PersonalPage', params: {playerID: data.item.player_id } }">{{ data.value }}</router-link>
     </template>
+    
      <template v-slot:cell(image)="data">
        <img :src="data.value" height="70px">
      </template>

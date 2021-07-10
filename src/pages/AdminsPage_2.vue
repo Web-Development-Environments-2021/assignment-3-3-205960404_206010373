@@ -1,143 +1,230 @@
-
 <template>
-<div>
-<div v-if="!loading">
-  <div class="left split">
-      <h1 style="text-align:center"> Add Game To System</h1>
-      <b-form @submit.prevent="validateForm" @reset.prevent="resetForm" style="max-width:500px">
-          <b-form-group label="Home Team" label-for="homeTeamInput">
-              <b-form-input id="homeTeamInput" v-model="$v.form.home_team.$model" type="text" placeholder="Home Team" :state="validateState('home_team')"></b-form-input>
-              <b-form-invalid-feedback v-if="!$v.form.home_team.required && home_team==''">Home team must be provided</b-form-invalid-feedback>
-              <b-form-invalid-feedback v-if="!$v.form.home_team.alpha && home_team!=''">Home team name must contain only letters</b-form-invalid-feedback>
+  <div id="admin">
+    <div>
+      <br><br>
+      <h2>Welcome to the Admin's page</h2>
+      <br><br>
+      <h5>
+        choose what you wish in order to update or add Matches.
+      </h5>
+      <br><br>
+      <b-button v-b-toggle.collapse-1 variant="primary">
+        Add game to the league</b-button>
+      <b-collapse id="collapse-1" class="mt-2">
+        <div>
+    <b-form @submit="addGame" @reset="onReset" v-if="show">
+
+        <b-form-group label="Date Of The Match" label-for="dateInput">
+              <b-form-datepicker :min="min" id="dateInput" locale="en-US" class="mb-2" v-model="date"></b-form-datepicker>
               </b-form-group>
-              <b-form-group label="Away Team" label-for="awayTeamInput">
-                  <b-form-input id="awayTeamInput" v-model="$v.form.away_team.$model" type="text" placeholder="Away Team" :state="validateState('away_team')"></b-form-input>
-                  <b-form-invalid-feedback v-if="!$v.form.away_team.required && away_team==''">Away team must be provided</b-form-invalid-feedback>
-                  <b-form-invalid-feedback v-if="!$v.form.away_team.alpha && away_team!=''">Away team name must contain only letters</b-form-invalid-feedback>
-                  <b-form-invalid-feedback v-if="!$v.form.away_team.sameAsHomeTeam && away_team!=''"> Away Team must be differrent from home team</b-form-invalid-feedback>
-                  </b-form-group>
-          <b-form-group label="Date Of The Match" label-for="dateInput">
-              <b-form-datepicker id="dateInput" locale="en-US" v-model="$v.form.date.$model" :State="validateState('date')" class="mb-2"></b-form-datepicker>
-              <b-form-invalid-feedback v-if="!$v.form.date.required && date==''">Date must be provided</b-form-invalid-feedback>
-              </b-form-group>
-          <b-form-group label="Time Of The Game" label-for="timeInput">
-              <b-form-timepicker v-model="$v.form.time.$model" locale="en-US" :state="validateState('time')"></b-form-timepicker>
-              <b-form-invalid-feedback v-if="!$v.form.time.required && time==''"> Time of the game must be provided</b-form-invalid-feedback>
-              </b-form-group>
-          <b-form-group label="Stadium" label-for="stadiumInput">
-              <b-form-input id="stadiumInput" v-model="$v.form.stadium.$model" type="text" placeholder="Stadium" :state="validateState('stadium')"></b-form-input>
-              <b-form-invalid-feedback v-if="!$v.form.stadium.required && stadium==''">Stadium name must be provided</b-form-invalid-feedback>
-              <b-form-invalid-feedback v-if="!$v.form.stadium.lettersValidator && stadium!=''">Stadium name must contain only letters</b-form-invalid-feedback>
-              </b-form-group>
-          <b-form-group label="Referee" label-for="refereeInput">
-              <b-form-input v-model="$v.form.referee.$model" type="text" placeholder="Referee" :state="validateState('referee')"></b-form-input>
-              <b-form-invalid-feedback v-if="!$v.form.referee.required && referee==''">Referee name must be provided</b-form-invalid-feedback>
-              <b-form-invalid-feedback v-if="!$v.form.referee.lettersValidator && referee!=''">Referee name must contain only letters</b-form-invalid-feedback>
-              </b-form-group>
-              <b-button style="margin-right:1%" type="submit" variant="primary">Submit</b-button>
-             <b-button type="reset" variant="danger">Reset</b-button>
-              </b-form>
-            <div id="alertsDiv">
-            <div v-if="processing" class="processingDiv">    
-            <b-alert variant="info" show="">Processing</b-alert>
-            <b-spinner label="Processing"></b-spinner>   
-            </div>     
-            <b-alert v-if="form.success && !processing" variant="success" show="">{{form.success}}</b-alert>
-            <b-alert v-else-if="form.errorMessage && !processing" variant="danger" show="">{{form.errorMessage}}</b-alert>
-            </div>
+              
+        <b-form-group label="Time Of The Game" label-for="timeInput">
+        <b-form-timepicker  locale="en-US"  v-model="hour" ></b-form-timepicker>
+        </b-form-group>
+ 
+        <b-form-group id="input-group-1" label="Stadium Name:" label-for="input-1">
+        <b-form-input
+          id="input-1"
+          v-model="form.stadium"
+          placeholder="Enter name"
+          required
+        ></b-form-input>
+      </b-form-group>
+
+      <b-form-group id="input-group-2" label="SuperLigaName:" label-for="input-2">
+        <b-form-input
+          id="input-2"
+          v-model="form.superligaName"
+          placeholder="Enter name"
+          required
+        ></b-form-input>
+      </b-form-group>
+
+      <b-form-group id="input-group-3" label="Season:" label-for="input-3">
+        <b-form-select
+          id="input-3"
+          v-model="seasonName"
+          :options="seasons"
+          required
+          
+        ></b-form-select>
+        <!-- <div class="mt-3">Selected: <strong>{{ seasonName }}</strong></div> -->
+      </b-form-group>
+
+        <b-form-group id="input-group-4" label="Stage:" label-for="input-4">
+        <b-form-select
+          id="input-4"
+          v-model="form.stageName"
+          :options="stages"
+          required
+        ></b-form-select>
+      </b-form-group>
+
+      <b-form-group id="input-group-5" label="Referee Name:" label-for="input-5">
+        <b-form-select
+          id="input-5"
+          v-model="form.refereeName"
+          :options="referees"
+          required
+        ></b-form-select>
+      </b-form-group>
+
+      <b-form-group id="input-group-6" label="Home Team Id:" label-for="input-6">
+        <b-form-input
+          id="input-6"
+          v-model="form.homeTeamID"
+          placeholder="Enter name"
+          required
+        ></b-form-input>
+      </b-form-group>
+
+      <b-form-group id="input-group-7" label="Away Team Id:" label-for="input-7">
+        <b-form-input
+          id="input-7"
+          v-model="form.awayteamID"
+          placeholder="Enter name"
+          required
+        ></b-form-input>
+      </b-form-group>
+
+
+
+      <b-button type="submit" variant="primary" >Submit</b-button>
+      <!-- <b-button type="reset" variant="danger">Reset</b-button> -->
+    </b-form>
+
   </div>
-  <div class="right split">
-      <p id="teamsHeader">Teams In League</p>
-      <ol>
-          <li v-for="(team,index) in teams_names" :key="index" @click="moveToTeamPage(team.id)" class="teams">{{team.name}}</li>
-      </ol>
+      </b-collapse>
+      <br><br>
+
+      <b-button v-b-toggle.collapse-2 variant="primary"
+        >Update a score of a previous game</b-button>
+      <b-collapse id="collapse-2" class="mt-2">
+       
+
+      </b-collapse>
+      
+      <br><br>
+      <b-button v-b-toggle.collapse-3 variant="primary"
+        >Add event to a game</b-button>
+      <b-collapse id="collapse-3" class="mt-2">
+        <b-card>
+          <div class="card-text">
+            <br>
+            <h6>Fill the following parameters to add event to a game</h6>
+            <br><br>
+            Choose game from the list above:
+            <!-- dvir bring future games 
+            take id  -->
+            <br><br>
+            Select minute in game
+            <select v-model="minute">
+              <option disabled value="">select minute in game </option>
+              <option>1</option
+              ><option>2</option>
+              <option>3</option
+              ><option>4</option>
+              <option>5</option
+              ><option>6</option>
+            </select>
+            <br><br>
+            Choose Type of event
+            <select v-model="event">
+              <option disabled value="">select event</option>
+              <option>Goal</option
+              ><option>Offside</option>
+              <option>Foul</option
+              ><option>Redcard</option>
+              <option>Yellowcard</option
+              ><option>Injury</option
+              ><option>Subtitution</option>
+            </select>
+            <br><br>
+           
+              <label for="fname">Players Name: </label>
+              <input type="text" id="fname" name="fname"><br><br>
+           
+            <br><br>
+            <button v-on:click="submit_add_event">submit</button>
+          </div>
+        </b-card>
+      </b-collapse>
+    </div>
   </div>
-</div>
-<div v-else class="processingDiv loadingDiv">
-    <label>Loading...</label>
-    <b-spinner label="loading"></b-spinner>
-</div>
-</div>
 </template>
 
 <script>
-import{required,alpha,helpers} from "vuelidate/lib/validators";
-const lettersValidator=helpers.regex('validLetters',/^[a-z ]*$/i)
-export default {
-    data(){
-        return{
-            form:{
-            home_team:"",
-            away_team:"",
-            date:"",
-            time:"",
-            stadium:"",
-            referee:"",
-            errorMessage: "",
-            success:""
-            },
-            processing:false,
-            teams_names:[],
-            loading:true
-        }
-    },
-    validations:{
-        form:{
-            home_team:{
-                required,alpha
-            },
-            away_team:{
-                required,alpha,
-                sameAsHomeTeam: (b,vm)=>{
-                   if(b!="" && vm.home_team!=""){
-                        return (b.toLowerCase()!=vm.home_team.toLowerCase())
-                   }
-                   return true
-                }
-            },
-            date:{
-                required
-            },
-            time:{
-                required
-            },
-            stadium:{
-                required,lettersValidator
-            },
-            referee:{
-                required,lettersValidator
-            }
-        }
-    },
-    mounted(){
-        try{
-            this.getTeamsNames()
-        }
-        catch(error){
-            console.log(error)
-        }
-    },
-    methods:{
-      validateState(param) {
-        const { $dirty, $error } = this.$v.form[param];
-        return $dirty ? !$error : null;
+ export default {
+    data() {
+      
+      const now = new Date()
+      const today = new Date(now.getFullYear(),now.getMonth(),now.getDate())
+      console.log(today)
+      return {
+        min: today,
+        form: {
+          
+          
+          email: '',
+          name: '',
+          food: null,
+          checked: []
         },
-        /**
-         * This function adds a game to the system
-         */
-        async addGame(){
+        seasonName:null,
+        seasons: [ "2017/2018","2018/2019","2019/2020"],
+        show: true,
+        stages: [{ text: 'Select One', value: null }, 'Regular Season', 'Play Off'],
+        referees: [{ text: 'Select One', value: null }, 'Pierluigi Collina', 'Markus Merk', 'Howard Webb','Kim Milton Nielsem','Sandor Puhl','Peter Mikkelsen','Michel Vautrot','Pedro Proenca','Oscar Ruiz','Frank de Bleeckere']
+        
+        
+      }
+    },
+    methods: {
+      onSubmit(event) {
+        event.preventDefault()
+        alert(JSON.stringify(this.form))
+      },
+      onReset(event) {
+        event.preventDefault()
+        // Reset our form values
+        this.form.email = ''
+        this.form.name = ''
+        this.form.food = null
+        this.form.checked = []
+        // Trick to reset/clear native browser form validation state
+        this.show = false
+        this.$nextTick(() => {
+          this.show = true
+        })
+      },
+       async addGame(){
             try{
-                this.processing=true;
-                this.form.success=undefined;
-                this.form.errorMessage=undefined;
-                let date_and_time=this.form.date+" "+this.form.time;
-                const response=await this.axios.post(`http://localhost:3000/leagueManagment/addGameToSystem`,{
-                    home_team:this.form.home_team,
-                    away_team:this.form.away_team,
-                    date_and_time:date_and_time,
-                    stadium:this.form.stadium,
-                    referee:this.form.referee
-                });
+                // this.processing=true;
+                // this.form.success=undefined;
+                // this.form.errorMessage=undefined;
+                console.log(this.date);
+                console.log(this.hour.slice(0,5));
+                console.log(this.form.stadium);
+                console.log(this.form.superligaName);
+                console.log(this.seasonName);
+                // console.log(this.form.stageName);
+                // console.log(this.form.refereeName);
+                console.log(this.form.homeTeamID);
+                console.log(this.form.awayteamID);
+                // let datetime=this.form.date;
+                // let datehour= this.form.time;
+                // const response=await this.axios.post(`http://localhost:3000/admin/addPreviewMatch`,{
+                //     date:this.form.date,
+                //     hour:this.form.hour,
+                //     stadium:this.form.stadium,
+                //     superligaName:this.form.superligaName,
+                //     seasonName:this.form.seasonName,
+                //     stageName:this.form.stageName,
+                //     refereeName:this.form.refereeName,
+                //     homeTeamID:this.form.homeTeamID,
+                //     awayTeamID:this.form.awayteamID,
+                 
+                // });
                 if(response.status==201){//if game was added successfully
                       this.form.success="Game was successfully added!";  
                 }
@@ -154,81 +241,103 @@ export default {
                 this.processing=false;
             }
         },
-        async getTeamsNames(){
-            this.loading=true
-            const names=await this.axios.get(`http://localhost:3000/leagueManagment/getAllTeamsInLeague`)
-            this.teams_names=names.data
-            this.loading=false
-        },
-        validateForm(){
-             this.$v.form.$touch();
-            if (this.$v.form.$anyError) {
-                return;
-            }
-            this.addGame();
-        },
-        resetForm(){
-            this.form={
-                home_team:"",
-                away_team:"",
-                date:"",
-                time:"",
-                stadium:"",
-                referee:"",
-                alertMessage:""
-            };
-            this.$nextTick(() => {
-                this.$v.$reset();
-        });
-        },
-        moveToTeamPage(id){
-            this.$router.push({name:"teamPageById",params:{team_id:id}});
-        }
     }
-}
+  }
+// export default {
+//   data() {
+//     this.getfutureGames();
+//     return {
+//       minute: 2,
+//       homeeee: '',
+//       homescore: null,
+//       awayscore: null,
+//       event: "Goal",
+//       player: 0,
+//       fields: [
+//         "selected",
+//         "date",
+//         "hour",
+//         "hostTeam",
+//         "guestTeam",
+//         "homeGoal",
+//         "awayGoal",
+//         "field",
+//         "stage",
+//       ],
+//       futuregames: this.futuregames,
+//       selected: [],
+//       selectMode: "single",
+//     };
+//   },
+//   methods: {
+//     onRowSelected(items) {
+//       this.selected = items;
+//     },
+//     async submit_add_event() {
+//       try {
+//         const response = await this.axios.post(
+//           "http://localhost:3000/admin/addEventtoMatch",
+//           {
+//             gameID: 14006,
+//             eventminute: this.minute,
+//             dataevent: this.event,
+//             playerID: this.player,
+//           }
+//         );
+//         alert();
+//         console.log("the event was added successfully");
+//       } catch (error) {
+//         console.log("there was a problem while trying to add the event");
+//       }
+//     },
+//     async getfutureMatches() {
+//       try {
+//         let response = await this.axios.get(
+//           "http://localhost:3000/matches/futureMatches"
+//         );
+//         this.futurematches = [];
+//         for (let i = 0; i < response.data.length; i++) {
+//           let homename = await this.axios.get(
+//             `http://localhost:3000/teams/teamName/${response.data[i].hometeamID}`
+//           );
+//           let awayname = await this.axios.get(
+//             `http://localhost:3000/teams/teamName/${response.data[i].awayteamID}`
+//           );
+//           let match = {
+//             id: response.data[i].gameID,
+//             date: response.data[i].gamedate,
+//             hour: response.data[i].gametime.slice(11, 19),
+//             hostTeam: homename.data,
+//             guestTeam: awayname.data,
+//             homeGoal: "Not played",
+//             awayGoal: "Not played",
+//             field: response.data[i].field,
+//             stage: response.data[i].stage
+//           };
+//           // console.log(match);
+//           this.futurematches.push(match);
+//         }
+//       } catch (error) {
+//         console.log("There are no matches in the future");
+//         this.matches = [];
+//         return this.matches;
+//       }
+//     },
+//     async add_score(){
+//       try{
+//         let response = await this.axios.put(
+//           "http://localhost:3000/admin/addScoretoMatch"
+//         );
+//       } catch(error){
+//         console.log("There was a problem adding the score to the match");
+//       }
+//     },
+//   },
+// };
 </script>
 
 <style>
-    #alertsDiv{
-        margin-top: 1%;
-    }
-    .left{
-        color: darkorange;
-        left: 0;
-    }
-    .right{
-        right: 0;
-    }
-    .split{
-        width: 50%;
-        height: 100%;
-        position: fixed;
-        z-index: 1;
-    }
-    .processingDiv{
-        display: flex;
-        flex-direction: row;
-    }
-    .teams{
-        margin-top:1% ;
-        font-weight: bold;
-        font-size: 24px;
-        color: darkgoldenrod;
-        width: fit-content;
-    }
-    .teams:hover{
-        color: darkred;
-        cursor: pointer;
-    }
-    #teamsHeader{
-        margin-top:1%;
-        font-size: 35px;
-        color: darkmagenta;
-    }
-    .loadingDiv{
-        margin-left:1% ;
-        margin-top: 1%;
-        font-size: 24px;
-        color: darkorange;
-    }
+#admin {
+  text-align: center;
+}
 </style>
