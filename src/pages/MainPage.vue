@@ -32,7 +32,7 @@ export default {
   data(){
       return {
         image: {
-          backgroundImage:"url(https://c4.wallpaperflare.com/wallpaper/593/957/270/background-mesh-football-sport-wallpaper-preview.jpg)",
+          backgroundImage:"url(https://wallpapercave.com/wp/wp5254013.jpg)",
           backgroundRepeat: "no-repeat",
           //backgroundRepeat: "no-repeat"
           backgroundSize: "100% auto"

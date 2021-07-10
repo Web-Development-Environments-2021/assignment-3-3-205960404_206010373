@@ -124,97 +124,130 @@
 </template>
 
 <script>
-export default {
-  data() {
-    this.getfutureGames();
-    return {
-      minute: 2,
-      homeeee: '',
-      homescore: null,
-      awayscore: null,
-      event: "Goal",
-      player: 0,
-      fields: [
-        "selected",
-        "date",
-        "hour",
-        "hostTeam",
-        "guestTeam",
-        "homeGoal",
-        "awayGoal",
-        "field",
-        "stage",
-      ],
-      futuregames: this.futuregames,
-      selected: [],
-      selectMode: "single",
-    };
-  },
-  methods: {
-    onRowSelected(items) {
-      this.selected = items;
-    },
-    async submit_add_event() {
-      try {
-        const response = await this.axios.post(
-          "http://localhost:3000/admin/addEventtoMatch",
-          {
-            gameID: 14006,
-            eventminute: this.minute,
-            dataevent: this.event,
-            playerID: this.player,
-          }
-        );
-        alert();
-        console.log("the event was added successfully");
-      } catch (error) {
-        console.log("there was a problem while trying to add the event");
+ export default {
+    data() {
+      return {
+        form: {
+          email: '',
+          name: '',
+          food: null,
+          checked: []
+        },
+        foods: [{ text: 'Select One', value: null }, 'Carrots', 'Beans', 'Tomatoes', 'Corn'],
+        show: true
       }
     },
-    async getfutureMatches() {
-      try {
-        let response = await this.axios.get(
-          "http://localhost:3000/matches/futureMatches"
-        );
-        this.futurematches = [];
-        for (let i = 0; i < response.data.length; i++) {
-          let homename = await this.axios.get(
-            `http://localhost:3000/teams/teamName/${response.data[i].hometeamID}`
-          );
-          let awayname = await this.axios.get(
-            `http://localhost:3000/teams/teamName/${response.data[i].awayteamID}`
-          );
-          let match = {
-            id: response.data[i].gameID,
-            date: response.data[i].gamedate,
-            hour: response.data[i].gametime.slice(11, 19),
-            hostTeam: homename.data,
-            guestTeam: awayname.data,
-            homeGoal: "Not played",
-            awayGoal: "Not played",
-            field: response.data[i].field,
-            stage: response.data[i].stage
-          };
-          // console.log(match);
-          this.futurematches.push(match);
-        }
-      } catch (error) {
-        console.log("There are no matches in the future");
-        this.matches = [];
-        return this.matches;
+    methods: {
+      onSubmit(event) {
+        event.preventDefault()
+        alert(JSON.stringify(this.form))
+      },
+      onReset(event) {
+        event.preventDefault()
+        // Reset our form values
+        this.form.email = ''
+        this.form.name = ''
+        this.form.food = null
+        this.form.checked = []
+        // Trick to reset/clear native browser form validation state
+        this.show = false
+        this.$nextTick(() => {
+          this.show = true
+        })
       }
-    },
-    async add_score(){
-      try{
-        let response = await this.axios.put(
-          "http://localhost:3000/admin/addScoretoMatch"
-        );
-      } catch(error){
-        console.log("There was a problem adding the score to the match");
-      }
-    },
-  },
-};
+    }
+  }
+// export default {
+//   data() {
+//     this.getfutureGames();
+//     return {
+//       minute: 2,
+//       homeeee: '',
+//       homescore: null,
+//       awayscore: null,
+//       event: "Goal",
+//       player: 0,
+//       fields: [
+//         "selected",
+//         "date",
+//         "hour",
+//         "hostTeam",
+//         "guestTeam",
+//         "homeGoal",
+//         "awayGoal",
+//         "field",
+//         "stage",
+//       ],
+//       futuregames: this.futuregames,
+//       selected: [],
+//       selectMode: "single",
+//     };
+//   },
+//   methods: {
+//     onRowSelected(items) {
+//       this.selected = items;
+//     },
+//     async submit_add_event() {
+//       try {
+//         const response = await this.axios.post(
+//           "http://localhost:3000/admin/addEventtoMatch",
+//           {
+//             gameID: 14006,
+//             eventminute: this.minute,
+//             dataevent: this.event,
+//             playerID: this.player,
+//           }
+//         );
+//         alert();
+//         console.log("the event was added successfully");
+//       } catch (error) {
+//         console.log("there was a problem while trying to add the event");
+//       }
+//     },
+//     async getfutureMatches() {
+//       try {
+//         let response = await this.axios.get(
+//           "http://localhost:3000/matches/futureMatches"
+//         );
+//         this.futurematches = [];
+//         for (let i = 0; i < response.data.length; i++) {
+//           let homename = await this.axios.get(
+//             `http://localhost:3000/teams/teamName/${response.data[i].hometeamID}`
+//           );
+//           let awayname = await this.axios.get(
+//             `http://localhost:3000/teams/teamName/${response.data[i].awayteamID}`
+//           );
+//           let match = {
+//             id: response.data[i].gameID,
+//             date: response.data[i].gamedate,
+//             hour: response.data[i].gametime.slice(11, 19),
+//             hostTeam: homename.data,
+//             guestTeam: awayname.data,
+//             homeGoal: "Not played",
+//             awayGoal: "Not played",
+//             field: response.data[i].field,
+//             stage: response.data[i].stage
+//           };
+//           // console.log(match);
+//           this.futurematches.push(match);
+//         }
+//       } catch (error) {
+//         console.log("There are no matches in the future");
+//         this.matches = [];
+//         return this.matches;
+//       }
+//     },
+//     async add_score(){
+//       try{
+//         let response = await this.axios.put(
+//           "http://localhost:3000/admin/addScoretoMatch"
+//         );
+//       } catch(error){
+//         console.log("There was a problem adding the score to the match");
+//       }
+//     },
+//   },
+// };
 </script>
 
 <style>

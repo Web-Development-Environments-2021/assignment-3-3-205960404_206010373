@@ -3,6 +3,8 @@
   <div id="div2" class="league-preview">
       <div>
       <b-card
+      width: 100%
+      overflow = "hidden"
       img-alt="Image"
       tag="article"
       style="max-width: 20rem;"
@@ -162,6 +164,17 @@ export default {
 
 #div2{
   display:none;
+}
+.card{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: rgb(151, 33, 33);
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
 }
 
 </style>
