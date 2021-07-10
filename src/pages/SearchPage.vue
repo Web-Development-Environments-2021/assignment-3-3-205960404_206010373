@@ -137,16 +137,21 @@ export default {
     };
   },
   mounted(){
+    this.items_players = [];
+    this.items_teams = [];
+    this.searchQuery = '';
+    this.showTeam = false;
+    this.showPlayers = false;
     console.log(this.$root.store);
-    this.searchQuery = localStorage.lastSearchQ;
-    if(localStorage.searchBy == "Players"){
+    this.searchQuery = this.$root.store.search.lastSearchQ;
+    if(this.$root.store.search.searchBy == "Players"){
       this.showPlayers = true;
-      this.items_players =  JSON.parse(localStorage.lastSearchResult);
+      this.items_players = this.$root.store.search.lastSearchResult;
       console.log(this.items_players);
     }
     else{
       this.showTeam = true;
-      this.items_teams =  JSON.parse(localStorage.lastSearchResult);
+      this.items_teams =  this.$root.store.search.lastSearchResult;
       console.log(this.items_teams);
     }
     //this.results = JSON.parse(localStorage.lastSearchResult);
@@ -154,13 +159,13 @@ export default {
   },
   methods:{
     updateLocalStorage(){
-      localStorage.setItem("lastSearchQ", this.searchQuery);
-      localStorage.setItem("searchBy", this.selected)
+      this.$root.store.search.lastSearchQ = this.searchQuery;
+      this.$root.store.search.searchBy = this.selected;
       if(this.selected=="Players"){
-          localStorage.setItem("lastSearchResult", JSON.stringify(this.items_players));
+        this.$root.store.search.lastSearchResult = this.items_players;
       }
       else{
-          localStorage.setItem("lastSearchResult", JSON.stringify(this.items_teams));
+        this.$root.store.search.lastSearchResult = this.items_teams;
       }
       
       
