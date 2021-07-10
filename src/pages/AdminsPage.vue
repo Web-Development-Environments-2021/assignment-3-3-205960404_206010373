@@ -12,9 +12,15 @@
         Add game to the league</b-button>
       <b-collapse id="collapse-1" class="mt-2">
         <div>
-    <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+    <b-form @submit="addGame" @reset="onReset" v-if="show">
 
-       
+        <b-form-group label="Date Of The Match" label-for="dateInput">
+              <b-form-datepicker :min="min" id="dateInput" locale="en-US" class="mb-2" v-model="date"></b-form-datepicker>
+              </b-form-group>
+              
+        <b-form-group label="Time Of The Game" label-for="timeInput">
+        <b-form-timepicker  locale="en-US"  v-model="hour" ></b-form-timepicker>
+        </b-form-group>
  
         <b-form-group id="input-group-2" label="Stadium Name:" label-for="input-2">
         <b-form-input
@@ -64,7 +70,7 @@
       <b-form-group id="input-group-2" label="Home Team Id:" label-for="input-2">
         <b-form-input
           id="input-2"
-          v-model="form.homaTeamID"
+          v-model="form.homeTeamID"
           placeholder="Enter name"
           required
         ></b-form-input>
@@ -81,7 +87,7 @@
 
 
 
-      <b-button type="submit" variant="primary">Submit</b-button>
+      <b-button type="submit" variant="primary" >Submit</b-button>
       <!-- <b-button type="reset" variant="danger">Reset</b-button> -->
     </b-form>
 
@@ -148,7 +154,11 @@
 <script>
  export default {
     data() {
+      const now = new Date()
+      const today = new Date(now.getFullYear(),now.getMonth(),now.getDate())
+      console.log(today)
       return {
+        min: today,
         form: {
           email: '',
           name: '',
@@ -180,7 +190,48 @@
         this.$nextTick(() => {
           this.show = true
         })
-      }
+      },
+       async addGame(){
+            try{
+                // this.processing=true;
+                // this.form.success=undefined;
+                // this.form.errorMessage=undefined;
+                console.log(this.date);
+                console.log(this.hour.slice(0,5));
+                console.log(this.form.stadium);
+                console.log(this.form.superligaName);
+                console.log(this.form.seasonName);
+                console.log(this.form.stagenName);
+                // let datetime=this.form.date;
+                // let datehour= this.form.time;
+                // const response=await this.axios.post(`http://localhost:3000/admin/addPreviewMatch`,{
+                //     date:this.form.date,
+                //     hour:this.form.hour,
+                //     stadium:this.form.stadium,
+                //     superligaName:this.form.superligaName,
+                //     seasonName:this.form.seasonName,
+                //     stageName:this.form.stagenName,
+                //     refereeName:this.form.refereeName,
+                //     homeTeamID:this.form.homeTeamID,
+                //     awayTeamID:this.form.awayteamID,
+                 
+                // });
+                if(response.status==201){//if game was added successfully
+                      this.form.success="Game was successfully added!";  
+                }
+                else if(response.status==409){
+                    this.form.errorMessage="Game was already added to the system";
+                }
+                else if(response.status==400){
+                    this.form.errorMessage="Bad teams names";
+                }
+                this.processing=false;
+            }
+            catch(error){
+                this.form.errorMessage=error.response.data;
+                this.processing=false;
+            }
+        },
     }
   }
 // export default {
