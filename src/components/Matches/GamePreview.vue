@@ -74,6 +74,9 @@ export default {
   width: 100%;
   overflow: hidden;
 }
+b {
+    color: blue;
+}
 
 
 
