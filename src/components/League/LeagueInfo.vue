@@ -2,22 +2,14 @@
 <div>
   <div id="div2" class="league-preview">
       <div>
-      <b-card
-      width: 100%
-      overflow = "hidden"
-      img-alt="Image"
-      tag="article"
-      style="max-width: 20rem;"
-      class="mb-2"
-    >
-      <b-card-title>{{leagueName}}</b-card-title>
-      <b-card-text>
+      
+      <div>{{leagueName}}</div>
+      <div>
         Season: {{ season }}
         <br/>
         Stage: {{ stage }}
-      </b-card-text>
+      </div>
       <b-button href="#" variant="primary">Go somewhere</b-button>
-    </b-card>
     </div>
     <div>
       <h3> Next Game in league:</h3>
@@ -140,6 +132,7 @@ export default {
 
 <style>
 .league-preview {
+  background-color: transparent !important;
   display: inline-block;
   width: 250px;
   height: 200px;
@@ -165,7 +158,7 @@ export default {
 #div2{
   display:none;
 }
-.card{
+/* .card{
     position: relative;
     display: flex;
     flex-direction: column;
@@ -175,6 +168,6 @@ export default {
     background-clip: border-box;
     border: 1px solid rgba(0, 0, 0, 0.125);
     border-radius: 0.25rem;
-}
+} */
 
 </style>
