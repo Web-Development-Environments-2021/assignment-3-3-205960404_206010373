@@ -3,16 +3,17 @@
   <div id="div2" class="league-preview">
       <div>
       
-      <div>{{leagueName}}</div>
+      <div><h5>{{leagueName}}</h5></div><br>
       <div>
-        Season: {{ season }}
-        <br/>
-        Stage: {{ stage }}
+        <h5>Season: {{ season }}</h5>
+        <br>
+        <h5>Stage: {{ stage }}</h5>
       </div>
-      <b-button href="#" variant="primary">Go somewhere</b-button>
+      <!-- <b-button href="#" variant="primary">Go somewhere</b-button> -->
     </div>
     <div>
-      <h3> Next Game in league:</h3>
+      <br><br><br>
+      <h4> Next Game in league:</h4>
     <GamePreview
       v-for="g in games"
       :id="g.id" 
@@ -157,17 +158,19 @@ export default {
 
 #div2{
   display:none;
+  margin-top: 50px;
+  margin-left: 40px;
 }
-/* .card{
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color: rgb(151, 33, 33);
-    background-clip: border-box;
-    border: 1px solid rgba(0, 0, 0, 0.125);
-    border-radius: 0.25rem;
-} */
+h5 {
+  font-family: cursive;
+  margin-top: 20px;
+}
+.league-title{
+  margin-top: 20px;
+  margin-left: 40px;
+}
+
+
+
 
 </style>

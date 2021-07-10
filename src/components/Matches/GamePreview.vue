@@ -56,17 +56,18 @@ export default {
   width: 250px;
   height: 200px;
   position: relative;
-  margin: 10px 10px;
   border-style: solid;
   border-radius: 10px;
   border-width: 5px;
   border-color:cadetblue;
+  font-family:cursive
 }
 
 .game-preview .game-title {
   text-align: center;
   text-transform: uppercase;
   color:  rgb(111, 197, 157);
+  margin-top: 15px;
 }
 
 .game-preview .game-content {
