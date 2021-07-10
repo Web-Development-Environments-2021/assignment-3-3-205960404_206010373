@@ -7,6 +7,7 @@
       As part of the Project we built the Backend side as well as the Frontend side.<br>
       for this project we learned JavaScript and Vue.<br>
     </h4>
+    <img src=>
   </div>
 </template>
 
