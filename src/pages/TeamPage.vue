@@ -46,15 +46,6 @@
    :items="past_items">
      
    </pastMatches>
-    <!-- <GamePreview
-      v-for="g in games"
-      :id="g.id"
-      :date="g.date"
-      :hour="g.hour"
-      :hostTeam="g.hostTeam" 
-      :guestTeam="g.guestTeam"
-      :stadium="g.stadium"
-      :key="g"></GamePreview> -->
   </div>
   <div>
     <futureMatches :fields="future_fields"
